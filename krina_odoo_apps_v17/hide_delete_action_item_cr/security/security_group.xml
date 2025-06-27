@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record model="res.groups" id="hide_delete_option_menus_for_group">
+            <field name="name">Hide Delete Option</field>
+            <field name="category_id" ref="base.module_category_usability"/>
+        </record>
+
+    </data>
+</odoo>

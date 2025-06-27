@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ <record id="payment_acquirer_form_cielo" model="ir.ui.view">
+        <field name="name">payment.acquirer.form.cielo.inherit</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <xpath expr='//group[@name="provider_credentials"]' position='after'>
+                <group invisible = "code != 'cielo'">
+                    <field name="cielo_merchant_id" password="True" required = "code == 'cielo' and state != 'disabled'"/>
+                    <field name="cielo_merchant_key" password="True" required = "code == 'cielo' and state != 'disabled'"/>
+                </group>
+            </xpath>
+            <xpath expr='//group[@name="provider_config"]' position='after'>
+                <group invisible = "code != 'cielo'">
+                    <field name="cielo_image_url" invisible="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

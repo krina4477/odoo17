@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="0">
+        <record id="notification_stock_available_template" model="mail.template">
+            <field name="name">Notification : Stock Available</field>
+            <field name="model_id" ref="website_product_stock_notify_cr.model_subscription_requests"/>
+            <field name="email_from">{{(object.user_id.partner_id.company_id.email or user.email)}}</field>
+            <field name="email_to">{{(object.customer_email)}}</field>
+            <field name="subject">Notification : Stock Available</field>
+            <field name="body_html" type="html">
+                <div class="abc" style="background-color: #7495a538;padding: 30px;">
+                    <div class="main"
+                         style="border: 1px solid lightgrey;padding: 50px;margin-left: 100px;margin-right: 100px;background-color: white;">
+                        <div class="logo" style="text-align:center;">
+                            <img src="/logo.png?company=${object.user_id.company_id.id}"
+                                 style="padding: 0px; margin: 0px; height: auto; width: 80px;"
+                                 alt="${object.user_id.partner_id.company_id.name}"/>
+
+
+                        </div>
+                        <hr style="margin-top:20px"></hr>
+                        <h1 style="font-family:none!important">Dear 
+                            <t t-esc="object.customer"/>,</h1>
+                        <div class="content"
+                             style="text-align:center;margin-top: 50px;background-color: aliceblue; border: double;padding: 50px;margin-left: 50px;margin-right: 50px;">
+                            <h1>Back In Stock</h1>
+                            <p style="margin-top:20px">We are happy to notify you that
+                                <strong>
+                                    <t t-esc="object.product_id.name"/>
+                                </strong>
+                                is Back in Stock.
+                            </p>
+                            <p style="margin-top:10px;">Grab it Before it is Sold Out..!!</p>
+                            <br></br>
+                            <div class="link" style="text-align:center; margin-top:20px">
+                                <a href="/shop" target='_blank'
+                                   style="background-color: #7b84ad; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                    Buy Now
+                                </a>
+                            </div>
+
+
+                        </div>
+                        <p style="margin-top: 50px;">Thanks You,</p>
+
+                        <p><t t-esc="user.signature"/></p>
+
+                        <p style="margin-top:10px;">Let us know if you have any question don't hesitate to contact us.
+                        </p>
+                        <hr style="margin-top:20px;margin-bottom:20px;"/>
+                        <div class="footer">
+                            <p valign="middle" align="left" style="opacity: 0.7;">
+
+                                <t t-esc="object.user_id.company_id.phone"/>
+                                <t t-if="object.user_id.partner_id.company_id.email">
+                                    | <a t-att-href="'mailto:%s' % object.user_id.partner_id.company_id.email"
+                                         style="text-decoration:none; color: #454748;" t-out="object.user_id.partner_id.company_id.email or ''">
+
+                                        <t t-esc="object.user_id.partner_id.company_id.email"/>
+                                    </a>
+                                </t>
+                                <t t-if="object.user_id.partner_id.company_id.website">
+                                    | <a t-att-href="'%s' % object.user_id.partner_id.company_id.website"
+                                         style="text-decoration:none; color: #454748;" t-out="object.user_id.partner_id.company_id.website or ''">
+
+                                        <t t-esc="object.user_id.partner_id.company_id.website"/>
+                                    </a>
+                                </t>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

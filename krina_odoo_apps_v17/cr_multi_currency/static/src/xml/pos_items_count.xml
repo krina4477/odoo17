@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="bg_pos_item_counter.OrderWidget"
+       t-inherit="point_of_sale.OrderWidget" t-inherit-mode="extension" owl="1">
+        <xpath expr="//span[hasclass('total')]" position="after">
+                    <t t-if="TotalQuantity">
+                        /
+                    <span class="wk_display_curr" style="color:#017e84;">
+                        <t t-if="TotalQuantity != 0">
+                             <t t-esc="TotalQuantity"/>
+                        </t>
+                        <t t-else="">
+                             <t t-esc="total"/>
+                        </t>
+
+                    </span>
+                    </t>
+        </xpath>
+    </t>
+</templates>

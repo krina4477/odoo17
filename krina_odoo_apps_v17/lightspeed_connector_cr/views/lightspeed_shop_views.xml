@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="shop_shop_tree_view" model="ir.ui.view">
+        <field name="name">lightspeed.shop.shop.tree.view</field>
+        <field name="model">lightspeed.shop.shop</field>
+        <field name="arch" type="xml">
+            <tree string="Shop">
+                <field name="name"/>
+                <field name="lightspeed_id"/>
+                <field name="warehouse_id"/>
+                <field name="lightspeed_warehouse_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="shop_shop_form_view" model="ir.ui.view">
+        <field name="name">lightspeed.shop.shop.form.view</field>
+        <field name="model">lightspeed.shop.shop</field>
+        <field name="arch" type="xml">
+            <form string="Shop">
+                <sheet>
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="lightspeed_id"/>
+                        <field name="warehouse_id"/>
+                        <field name="lightspeed_warehouse_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="lightspeed_shop_tree_view" model="ir.ui.view">
+        <field name="name">lightspeed.shop.tree.view</field>
+        <field name="model">lightspeed.shop</field>
+        <field name="arch" type="xml">
+            <tree string="Shop">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="lightspeed_shop_form_view" model="ir.ui.view">
+        <field name="name">lightspeed.shop.form.view</field>
+        <field name="model">lightspeed.shop</field>
+        <field name="arch" type="xml">
+            <form string="Shop">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="url" widget="url"/>
+                            <field name="code"/>
+                        </group>
+                        <group>
+                            <field name="api_key" password="1" required="1"/>
+                            <field name="api_secret" password="1" required="1"/>
+                            <field name="token"/>
+                            <field name="refresh_token"/>
+                            <field name="account_id"/>
+                            <field name="warehouse_id" required="True"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page name="failure jobs" invisible="1">
+                            <group>
+                                <field name="failure_jobs"/></group>
+                        </page>
+                        <page name="authorisation_operation" string="Authorisation Operations">
+                             <group>
+                                <button name="generate_access_token" type="object" string="Generate Token and AccountID" class="btn btn-primary"/><br/>
+                            </group>
+                        </page>
+                        <page name="import_operations" string="Import Operations">
+                            <group>
+                                <button name="import_shops" type="object" string="Import Shops/Warehouse" class="btn btn-primary"/><br/>
+                            </group>
+                            <group>
+                                <button name="import_tags" type="object" string="Import Tags" class="btn btn-primary"/><br/>
+                            </group>
+                            <group>
+                                <button name="import_taxes" type="object" string="Import Tax" class="btn btn-primary"/><br/>
+                            </group>
+                            <group>
+                                <button name="import_customers" type="object" string="Import Customers" class="btn btn-primary"/><br/>
+                            </group>
+                            <group>
+                                <button name="import_suppliers" type="object" string="Import Suppliers" class="btn btn-primary"/><br/>
+                            </group>
+                            <group>
+                                <button name="import_category" type="object" string="Import Categories" class="btn btn-primary"/><br/>
+                            </group>
+<!--                            <group>-->
+<!--                                <button name="import_brand" type="object" string="Import Brands" class="btn btn-primary"/><br/>-->
+<!--                            </group>-->
+                            <group>
+                                <button name="import_products" type="object" string="Import Products" class="btn btn-primary"/><br/>
+                            </group>
+                            <group>
+                                <button name="import_attributes" type="object" string="Import Attributes" class="btn btn-primary"/><br/>
+                            </group>
+                            <group col="8">
+                                <field name="order_fetch_from" required="1"/>
+                                <field name="do_complete" />
+                                <field name="invoice_complete" />
+                                <field name="payment_complete" />
+                            </group>
+                            <group col="4">
+                                <button name="import_orders" type="object" string="Import Orders" class="btn btn-primary"/><br/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="lightspeed_shop_action" model="ir.actions.act_window">
+        <field name="name">Shop Configuration</field>
+        <field name="res_model">lightspeed.shop</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+         <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a Lightspeed Shop.
+            </p><p>
+                Use this menu to create lightspped shop.
+            </p>
+        </field>
+    </record>
+
+    <record id="shop_shop_window_action" model="ir.actions.act_window">
+        <field name="name">Shop</field>
+        <field name="res_model">lightspeed.shop.shop</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+         <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a Shop.
+            </p><p>
+                Use this menu to create shop.
+            </p>
+        </field>
+    </record>
+
+    <record id="lightspeed_stock_product_normal_action" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="domain">[('lightspeed_id','!=',False)]</field>
+        <field name="search_view_id" ref="stock.stock_product_search_form_view"/>
+    </record>
+
+    <menuitem name="Lightspeed"
+        id="menu_lightspeed" web_icon="lightspeed_connector_cr,static/description/web_icon.png"
+        sequence="20"/>
+
+    <menuitem name="Products"
+        id="menu_products"
+        parent = "menu_lightspeed"
+        sequence="2"/>
+
+    <menuitem name="Products"
+        id="products_lightspeed_show"
+        parent = "menu_products" action="lightspeed_stock_product_normal_action"
+        sequence="1"/>
+
+    <menuitem name="Lightspeed Shop"
+        id="menu_lightspeed_shop_main"
+        parent = "menu_lightspeed"
+        sequence="1"/>
+
+    <menuitem name="Lightspeed Shop Configuration"
+        id="menu_lightspeed_shop"
+        parent = "menu_lightspeed_shop_main"
+        action="lightspeed_shop_action"
+        sequence="1"/>
+
+    <menuitem name="Shops"
+        id="menu_shops"
+        parent="menu_lightspeed_shop_main"
+        action="shop_shop_window_action"
+        sequence="2"/>
+</odoo>

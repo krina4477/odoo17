@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="inherit_website_sale" inherit_id="website_sale.filmstrip_categories">
+            <xpath expr="//div//div//span[contains(@t-field, 'c.name')]" position="after">
+                &#160; <span t-field="c.product_count"/>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

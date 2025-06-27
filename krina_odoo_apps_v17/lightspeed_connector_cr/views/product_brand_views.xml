@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_brand_tree_view" model="ir.ui.view">
+        <field name="name">product.brand.tree.view</field>
+        <field name="model">product.brand</field>
+        <field name="arch" type="xml">
+            <tree string="Product Brand">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_brand_form_view" model="ir.ui.view">
+        <field name="name">product.brand.form.view</field>
+        <field name="model">product.brand</field>
+        <field name="arch" type="xml">
+            <form string="Product Brand">
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label class="oe_edit_only" for="name" string="Brand Name"/>
+                        <h1><field name="name" placeholder="Brand Name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="lightspeed_id" readonly="1"/>
+                            <field name="shop_id"
+                            readonly="lightspeed_id"/>
+                        </group>
+                        <group>
+                            <field name="is_visible"/>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_brand_action" model="ir.actions.act_window">
+        <field name="name">Product Brand</field>
+        <field name="res_model">product.brand</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+         <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a Product Brand.
+            </p><p>
+                Use this menu to create product brand.
+            </p>
+        </field>
+    </record>
+
+</odoo>

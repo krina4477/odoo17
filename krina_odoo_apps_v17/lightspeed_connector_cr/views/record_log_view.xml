@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="lightspeed_failure_log_tree" model="ir.ui.view">
+        <field name="name">lightspeed.failure.log.tree.view</field>
+        <field name="model">lightspeed.failure.log</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom" create='false' edit='false' string="Failure Log">
+                <field name="import_obj"/>
+                <field name="record_name"/>
+                <field name="failure_msg"/>
+                <field name="response_json"/>
+                <field name="is_send" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="lightspeed_failure_log_form" model="ir.ui.view">
+        <field name="name">lightspeed.failure.log.form.view</field>
+        <field name="model">lightspeed.failure.log</field>
+        <field name="arch" type="xml">
+            <form editable="bottom" string="Failure Logs">
+                <field name="import_obj"/>
+                <field name="record_name"/>
+                <field name="failure_msg"/>
+                <field name="response_json"/>
+                <field name="is_send" invisible="1"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="lightspeed_failure_log_search" model="ir.ui.view">
+        <field name="name">lightspeed.failure.log.form.view</field>
+        <field name="model">lightspeed.failure.log</field>
+        <field name="arch" type="xml">
+            <search string="Failure Logs">
+                <field name="import_obj"/>
+                <field name="record_name"/>
+                <field name="failure_msg"/>
+                <field name="response_json"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="lightspeed_failure_log_action" model="ir.actions.act_window">
+        <field name="name">Failure Logs</field>
+        <field name="res_model">lightspeed.failure.log</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="lightspeed_failure_log_tree"/>
+        <field name="context">{}</field>
+         <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Failure logs is empty.
+            </p>
+        </field>
+    </record>
+
+    <menuitem name="Failure Logs"
+        id="menu_failure_log"
+        parent = "menu_lightspeed"
+        sequence="3"/>
+
+    <menuitem name="Failure Logs"
+        id="menu_records_failure_logs"
+        parent = "menu_failure_log"
+        action = "lightspeed_failure_log_action"
+        sequence="2"/>
+
+
+     <record id="ir_cron_update_payment_status_lightspeed" model="ir.cron">
+        <field name="name">Update Status</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_update_payment_status_lightspeed()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+    </record>
+</odoo>

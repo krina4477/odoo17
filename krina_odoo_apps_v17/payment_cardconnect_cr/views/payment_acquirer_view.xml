@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="payment_acquirer_form_carconnect" model="ir.ui.view">
+        <field name="name">payment.provider.form.cardconnect</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <xpath expr='//page[@name="credentials"]' position='inside'>
+<!--                <group attrs="{'invisible': [('code', '!=', 'codecode')]}">-->
+                <group>
+                    <field name="cconnect_merchant_account"/>
+                    <field name="cconnect_url"/>
+                    <field name="cconnect_user"/>
+                    <field name="cconnect_pwd"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

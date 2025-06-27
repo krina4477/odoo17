@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="aftership_res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">After Shipping Configuration</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='companies']" position="after">
+                <h2>After Shipping Configuration</h2>
+                <div class="row mt16 o_settings_container" id="aftership_configuration">
+                    <div class="col-xs-12 col-md-6 o_setting_box" id="aftership_api_key">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="aftership_api_key"/>
+                            <br/>
+                            <field name="aftership_api_key" password="True"/>
+                            <button name="get_courier_list" string="Get Courier List" type="object"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

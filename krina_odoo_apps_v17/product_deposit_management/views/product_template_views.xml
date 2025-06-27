@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="product_template_is_deposit_product" model="ir.ui.view">
+        <field name="name">product.template.is.deposit.product.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button" type="object" name="action_view_sale_order_line"
+                        icon="fa-usd">
+                    <field string="Sales Deposits" name="sale_order_line_count" widget="statinfo"/>
+                </button>
+                <button class="oe_stat_button" type="object" name="action_view_purchase_order_line"
+                        icon="fa-credit-card">
+                    <field string="Purchase Deposits" name="purchase_order_line_count" widget="statinfo"/>
+                </button>
+            </div>
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="deposit_type"/>
+                <!-- <field name="deposit_product_id" domain="[('deposit_type', '=', 'deposit_product')]"
+                       attrs="{'invisible': [('deposit_type', '!=', 'has_deposit')], 'required': [('deposit_type', '=', 'has_deposit')]}"/> -->
+
+                        <field name="deposit_product_id" domain="[('deposit_type', '=', 'deposit_product')]"
+                                invisible="deposit_type != 'has_deposit'"/>
+                                
+
+
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_packaging_form_is_deposit_product" model="ir.ui.view">
+        <field name="name">product.packaging.is.deposit.product.form</field>
+        <field name="model">product.packaging</field>
+        <field name="inherit_id" ref="product.product_packaging_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="deposit_type" invisible="1"/>
+                <!-- <field name="deposit_product_id" domain="[('deposit_type', '=', 'deposit_product')]"
+                       attrs="{'invisible': [('deposit_type', '!=', 'has_deposit')], 'required': [('deposit_type', '=', 'has_deposit')]}"/> -->
+
+                    <field name="deposit_product_id" domain="[('deposit_type', '=', 'deposit_product')]"
+                       invisible="deposit_type != 'has_deposit' " required="deposit_type == 'has_deposit'" />
+
+                    
+                    
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

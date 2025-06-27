@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pos_scrap_wizard,pos.scrap.wizard,model_pos_scrap_wizard,,1,1,1,1
+access_pos_scrap_history,pos.scrap.history,model_pos_scrap_history,,1,1,1,1
+access_pos_scrap_history_line,pos.scrap.history.line,model_pos_scrap_history_line,,1,1,1,1

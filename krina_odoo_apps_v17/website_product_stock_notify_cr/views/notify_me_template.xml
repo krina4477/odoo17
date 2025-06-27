@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="website_stock_notify_form" model="ir.ui.view">
+        <field name="name">Stock Notify Template</field>
+        <field name="type">qweb</field>
+        <field name="key">website_product_stock_notify_cr.website_stock_notify_form</field>
+        <field name="arch" type="xml">
+            <t name="notify_me_template" t-name="website_product_stock_notify_cr.website_stock_notify_form">
+                <t t-call="website.layout">
+                    <div id="wrap" class="oe_structure oe_empty"/>
+                    <div id="wrap" class="oe_structure oe_empty"/>
+                    <div id="wrap">
+                        <div class="oe_structure">
+                            <section id="notify_me_template" style="padding-top:100px;padding-bottom:100px;">
+                                <div class="meassage col-lg-6" style="margin-left:100px;">
+                                    <h2 style="margin-bottom:30px!important;">We have Received Your Request</h2>
+                                    <div class="alert alert-success" role="alert" style="padding:20px;">
+                                        <span style="font-size:18px;">Thank You for your interest...!!! you will be
+                                            notified by Email when the
+                                            product will be on
+                                            available..!!!!
+                                        </span>
+                                    </div>
+                                    <a role="button" href="/shop"
+                                       class="btn btn-secondary mb32 d-none d-xl-inline-block">
+                                        <span class="fa fa-chevron-left"/>
+                                        <span class="">Continue Shopping</span>
+                                    </a>
+                                </div>
+
+                            </section>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+</odoo>

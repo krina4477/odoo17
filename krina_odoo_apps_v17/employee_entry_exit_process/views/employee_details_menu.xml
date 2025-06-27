@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="action_employee_details" model="ir.actions.act_window">
+        <field name="name">Employees Details</field>
+        <field name="res_model">employee.details</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_employee_root" action="action_employee_details" name="Employee Management" sequence="10"/>
+
+<!--    <menuitem id="menu_employee_details"-->
+<!--              name="Employees"-->
+<!--              parent="menu_employee_root"-->
+<!--              action="action_employee_details"-->
+<!--              sequence="20"/>-->
+
+</odoo>

@@ -1,0 +1,22 @@
+.notify-me__start-text {
+     padding-top:30px;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+    color:gray;
+}
+.clearfix{
+
+    .check-mail{
+        display:flex;
+    }
+    .notify-me-btn{
+        margin-left: 10px;
+        padding: 5px;
+        border-radius: 0.25rem;
+        color: #FFFFFF;
+        background-color: #00A09D;
+        border-color: #00A09D;
+        font-size: 13px;
+
+    }
+}

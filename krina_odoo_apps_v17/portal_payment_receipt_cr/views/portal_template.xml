@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_home_payment_receipt" name="Show Payment" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t  t-call="portal.portal_docs_entry">
+                <t t-set="url">/my/payment_receipt</t>
+                <t t-set="title">Payment Receipt</t>
+                <t t-set="placeholder_count" t-value="'payment_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+     <template id="portal_my_home_menu_payment" name="Portal layout : show payment" inherit_id="portal.portal_breadcrumbs" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'payment'" t-attf-class="breadcrumb-item #{'active ' if not payment else ''}">
+                <a t-if="payment" href="/my/payment_receipt">Payment</a>
+                <t t-else="">Payment</t>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_payment_receipt" name="Payment Receipt">
+        <t t-call="portal.portal_layout">
+        <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+        <t t-call="portal.portal_searchbar">
+            <t t-set="title">Payment Receipt</t>
+        </t>
+        <t t-if="not payments">
+            <p>There are currently no payments Receipt for your account.</p>
+        </t>
+        <t t-if="payments" t-call="portal.portal_table">
+            <thead>
+                <tr class="active">
+                    <th>Payments Number #</th>
+                    <th>Date</th>
+                    <th class="text-right">Amount</th>
+                    <th class="text-center">Journal</th>
+                    <th>Type</th>
+                    <th>Print</th>
+                </tr>
+            </thead>
+            <tbody>
+                <t t-foreach="payments" t-as="payment">
+                    <tr>
+                        <td>
+                            <a t-attf-href="/print/receipt/detail/{{ payment.id }}">
+                                <t t-esc="payment.name" t-if="payment.name != '/'"/>
+                            </a>
+                        </td>
+                        <td><span t-field="payment.date"/></td>
+                        <td class="text-right"><span t-esc="payment.amount"/></td>
+                        <td class="text-center"><span t-esc="payment.journal_id.name"/></td>
+                        <td><span t-field="payment.payment_type"/></td>
+                        <td>
+                            <a t-attf-href="/print/receipt/{{ payment.id }}" target="_blank">
+<!--                            <input type="hidden" name="payment" t-att-value="payment.id"/>-->
+                                <button type="button" class="btn btn-primary btn-md o_website_form_send">Print Receipt</button>
+                            </a>
+                        </td>
+                    </tr>
+                </t>
+            </tbody>
+        </t>
+      </t>
+    </template>
+
+</odoo>

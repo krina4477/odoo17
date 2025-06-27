@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+        <t t-name="InheritImportDataContent" t-inherit="base_import.ImportDataContent" t-inherit-mode="extension">
+            <xpath expr="//div//table//tbody//t//tr//td//SelectMenu" position="after">
+               <span>
+                   <input type="checkbox" class="o_import_update_option" onClick="FileUploadData()" t-att-value="column.name"/>
+                    Update if exist
+               </span>
+            </xpath>
+        </t>
+</templates>

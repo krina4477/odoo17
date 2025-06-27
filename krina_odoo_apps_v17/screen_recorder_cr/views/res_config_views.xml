@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_setting_inherit_view" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.rossum</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="60" />
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Screen Recorder" string="Screen Recorder" name="recorder" groups="base.group_system" logo="screen_recorder_cr/static/description/icon.png">
+                    <block title="Screen Recorder" id="screen_recorder">
+                        <setting>
+                            <field name="record_for"/>
+                        </setting>
+                        <setting invisible="record_for == 'lead'">
+                            <field name="project_id" invisible="record_for == 'lead'"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

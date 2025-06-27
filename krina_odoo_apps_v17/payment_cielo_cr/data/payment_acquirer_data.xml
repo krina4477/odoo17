@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="payment_method_cielo_cr" model="payment.method">
+            <field name="name">Cielo</field>
+            <field name="code">cielo</field>
+            <field name="sequence">20</field>
+            <field name="active">True</field>
+            <field name="image" type="base64" file="payment_cielo_cr/static/src/img/cielo_icon.png"/>
+            <field name="support_tokenization">True</field>
+        </record>
+
+        <record id="payment_method_cielo" model="account.payment.method">
+            <field name="name">Cielo</field>
+            <field name="code">cielo</field>
+            <field name="payment_type">inbound</field>
+        </record>
+
+        <record id="payment_cielo_cr.payment_acquirer_cielo" model="payment.provider">
+            <field name="name">Cielo</field>
+            <field name="image_128" type="base64" file="payment_cielo_cr/static/src/img/cielo_icon.png"/>
+            <field name="module_id" ref="base.module_payment_cielo_cr"/>
+            <field name="allow_tokenization">True</field>
+            <field name="cielo_merchant_id">dummy</field>
+            <field name="cielo_merchant_key">dummy</field>
+            <field name="payment_method_ids" eval="[(6, 0, [ref('payment_cielo_cr.payment_method_cielo_cr')])]"/>
+            <field name="code">cielo</field>
+            <field name="inline_form_view_id" ref="inline_form"/>
+        </record>
+
+    </data>
+</odoo>

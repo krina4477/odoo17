@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_inherit_split_receipt" model="ir.ui.view">
+        <field name="name">purchase.order.form.split.receipt.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="replace">
+                <field name="receipt_order_complete" invisible="1"/>
+            </xpath>
+            <xpath expr="//button[@id='bid_confirm']" position="replace">
+                <button name="%(action_purchase_order_confirm_split_receipt)d" invisible="receipt_order_complete == True" type="action" string="Confirm Order" class="oe_highlight" id="bid_confirm"/>
+            </xpath>
+             <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+                    <field name="receipt_order_done" invisible="0"/>
+             </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="res_partner_view_buttons_sol" model="ir.ui.view">
+        <field name="name">res.partner.saleline.view.buttons</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority" eval="1000"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <field name="customer_rank" invisible="1"/>
+                <field name="supplier_rank" invisible="1"/>
+                <!-- <button class="oe_stat_button" type="object" name="action_view_sale_order_line"
+                        icon="fa-usd" attrs="{'invisible': [('supplier_rank', '>', 0)]}">
+                    <field string="Sales Deposits" name="sale_order_line_count" widget="statinfo"/>
+                </button>
+                <button class="oe_stat_button" type="object" name="action_view_purchase_order_line"
+                        icon="fa-credit-card" attrs="{'invisible': [('customer_rank', '>', 0)]}">
+                    <field string="Purchase Deposits" name="purchase_order_line_count" widget="statinfo"/>
+                </button> -->
+
+                <button class="oe_stat_button" type="object" name="action_view_sale_order_line"
+                        icon="fa-usd" invisible="supplier_rank > 0">
+                    <field string="Sales Deposits" name="sale_order_line_count" widget="statinfo"/>
+                </button>
+                <button class="oe_stat_button" type="object" name="action_view_purchase_order_line"
+                        icon="fa-credit-card" invisible="customer_rank >  0">
+                    <field string="Purchase Deposits" name="purchase_order_line_count" widget="statinfo"/>
+                </button>
+            </div>
+        </field>
+    </record>
+
+</odoo>

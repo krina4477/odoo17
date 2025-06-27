@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Call Price Tree view  -->
+    <record id="call_price_tree_view" model="ir.ui.view">
+        <field name="name">call.price.tree.view</field>
+        <field name="model">call.price</field>          
+        <field name="arch" type="xml">
+            <tree string="Call Price">
+                <field name="first_name"/>
+                <field name="last_name"/>
+                <field name="email"/>
+                <field name="mobile"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Call Price Form View -->
+    <record id="call_price_form_view" model="ir.ui.view">
+        <field name="name">call.price.form.view</field>
+        <field name="model">call.price</field>          
+        <field name="arch" type="xml">              
+            <form string="Call Price">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="first_name" required="1"/>
+                            <field name="email" widget="email" required="1"/>
+                            <field name="quantity" required="1"/>
+                        </group>
+                        <group>
+                            <field name="last_name"/>
+                            <field name="mobile" widget="phone" required="1"/>
+                            <field name="message" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Call Price Action -->
+    <record id="call_price_action" model="ir.actions.act_window">
+        <field name="name">Call Price</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">call.price</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Call Price Menu -->
+    <menuitem   id="call_price"
+                name="Call Price"
+                action="call_price_action"
+                parent="sale.sale_menu_root"/>
+</odoo>

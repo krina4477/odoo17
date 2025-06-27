@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="mailing_mailing_schedule_date_view_form_inherit"  model="ir.ui.view">
+	        <field name="name">mailing.mailing.schedule.date.view.form.inherit</field>
+	        <field name="model">mailing.mailing.schedule.date</field>
+	        <field name="inherit_id" ref="mass_mailing.mailing_mailing_schedule_date_view_form"/>
+	        <field name="arch" type="xml">
+	            <xpath expr="//form/group/group" position="after">
+            		<group>
+            		<field name="enddate_time"/>
+            		</group>
+	            </xpath>
+	            <xpath expr="//form/group" position="after">
+	            	<group>
+	            		<group>
+	            		<field name="is_recurring" widget='radio'/>
+	            		</group>
+	            	</group>
+	            </xpath>
+	        </field>
+	    </record>
+	</data>
+</odoo>

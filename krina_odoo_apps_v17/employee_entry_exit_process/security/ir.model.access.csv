@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_employee_details,employee.details,model_employee_details,,1,1,1,1
+access_employee_entry_checklist,employee.entry.checklist,model_employee_entry_checklist,,1,1,1,1
+access_employee_exit_checklist,employee.exit.checklist,model_employee_exit_checklist,,1,1,1,1
+access_hr_leave_allocation_wizard,hr.leave.allocation.wizard,model_hr_leave_allocation_wizard,,1,1,1,1

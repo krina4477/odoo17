@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="pos_order_views_pricelist" model="ir.ui.view">
+        <field name="name">pos.order.form.pricelist</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lines']/tree//field[@name='price_unit']" position="after">
+                <field name="pricelist_id" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

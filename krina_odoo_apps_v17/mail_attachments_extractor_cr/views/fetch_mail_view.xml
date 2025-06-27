@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Fetch Mail Config Tree view  -->
+	<record id="fetch_mail_config_tree_view" model="ir.ui.view">
+		<field name="name">fetch.mail.config.tree.view</field>
+		<field name="model">fetch.mail.config</field>			
+		<field name="arch" type="xml">
+			<tree string="Fetch Mail Config">
+				<field name="name"/>
+				<field name="subject_line"/>
+				<field name="directory_id"/>
+			</tree>
+		</field>
+	</record>
+
+	<!-- Fetch Mail Config Form View -->
+	<record id="fetch_mail_config_form_view" model="ir.ui.view">
+		<field name="name">fetch.mail.config.form.view</field>
+		<field name="model">fetch.mail.config</field>			
+		<field name="arch" type="xml">				
+			<form string="Fetch Mail Config">
+				<sheet>
+					<group>
+						<group>
+							<field name="name" required="True"/>
+							<field name="subject_line" required="True"/>
+							<field name="directory_id"/>
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- Fetch Mail Config Action -->
+	<record id="fetch_mail_config_action" model="ir.actions.act_window">
+        <field name="name">Fetch Mail Configuration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">fetch.mail.config</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+</odoo>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="request_demo_popup" inherit_id="website_sale.product">
+        <xpath expr="//div[@id='add_to_cart_wrap']" position="replace">
+          
+            <div id="add_to_cart_wrap" t-attf-class="{{'d-none' if combination_info['prevent_zero_price_sale'] else 'd-inline-flex'}} align-items-center mb-2 me-2">
+                <a data-animation-selector=".o_wsale_product_images" role="button" id="add_to_cart" t-attf-class="btn btn-primary js_check_product a-submit flex-grow-1" href="#">
+                    <i class="fa fa-shopping-cart me-2"/> Add to cart
+                </a>
+            </div>
+
+                
+
+            <div id="requestDemo" t-attf-class="{{'d-none' align-items-center mb-2 me-auto">
+                <a 
+                    href="#"
+                    class="btn btn-primary d-block"
+                    data-bs-toggle="modal"
+                    data-bs-target="#askfordemo">
+                    <i class="fa fa-comment me-2"/> Request Demo
+                </a>
+            </div>
+
+            <div class="modal fade" id="askfordemo" tabindex="-1" role="dialog" aria-labelledby="askfordemoLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="askfordemo" style="margin-top: 9px;"> Request Demo </h5>
+                            <t t-set="user" t-value="request.env.user"/>
+                        </div>
+                        <div class="modal-body">
+                            <form id="request_demo_form" action="/website_form/" method="post" enctype="multipart/form-data" data-model_name="crm.lead" class="o_mark_required" data-success-mode="redirect" data-success-page="/thankyou">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="first-name">Name *</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="text" name="first_name" class="form-control" required="1" id="first-name" t-att-value="user.name if user.id != 4 else None" t-att-readonly="'readonly' if user.id != 4 else None"/>
+                                    </div>
+                                    <div class="col-md-3 mt16">
+                                        <label for="email">Email *</label>
+                                    </div>
+                                    <div class="col-md-9 mt16">
+                                        <input type="text" name="email_name" class="form-control" required="1" id="email" t-att-value="user.login if user.id != 4 else None" t-att-readonly="'readonly' if user.id != 4 else None"/>
+                                    </div>
+                                    <div class="col-md-3 mt16" style="">
+                                        <label for="product_name">Product:</label>
+                                    </div>
+                                    <div class="col-md-9 mt16" style="">
+                                        <input type="text" name="product" class="form-control" readonly="1" id="product_name" t-att-value="product.name"/>
+                                    </div>
+                                    <div class="col-md-3 mt16">
+                                        <label for="details">Description *:</label>
+                                    </div>
+                                    <div class="col-md-9 mt16">
+                                        <textarea type="text" id="details" name="details" class="form-control" required="1"></textarea>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="js_send_demo_req" class="btn btn-primary">Send</button>
+                            <button type="button" class="btn" style="background-color: #c4c4c4;border: #c4c4c4;" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

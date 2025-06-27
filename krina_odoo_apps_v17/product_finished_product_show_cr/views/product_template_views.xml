@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_finished_product_show_in_product_form" model="ir.ui.view">
+        <field name="name">product.product.finished.product.show</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="mrp.product_product_form_view_bom_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_bom']" position="after">
+                    <!-- <button class="oe_stat_button" name="action_view_bom" type="object"
+                        groups="mrp.group_mrp_user"
+                        attrs="{'invisible': [('finished_product_count', '=', 0)]}" icon="fa-flask"> -->
+
+                    <button class="oe_stat_button" name="action_view_bom" type="object"
+                        groups="mrp.group_mrp_user"
+                        invisible="finished_product_count == 0" icon="fa-flask">
+                        <field string="Finished Product Count" name="finished_product_count" widget="statinfo" />
+                    </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_finished_product_template_show_in_product_form" model="ir.ui.view">
+        <field name="name">product.template.finished.product.show</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="mrp.product_template_form_view_bom_button"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                    <!-- <button class="oe_stat_button" name="%(mrp.template_open_bom)d" type="action"
+                        groups="mrp.group_mrp_user"
+                        attrs="{'invisible': [('finished_product_count', '=', 0)]}" icon="fa-flask"> -->
+                    <button class="oe_stat_button" name="%(mrp.template_open_bom)d" type="action"
+                        groups="mrp.group_mrp_user"
+                        invisible="finished_product_count == 0" icon="fa-flask">
+                        <field string="Finished Product Count" name="finished_product_count" widget="statinfo" />
+                    </button>
+            </div>
+        </field>
+    </record>
+
+</odoo>
+
+

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="copy_order_button" inherit_id="sale.sale_order_portal_content">
+        <xpath expr="//div[@id='introduction']" position="inside">
+            <button href="#" class="btn btn-secondary js_copy_order" style="margin-left: auto;color: white;"
+                    title="Repeat Order">
+                <i class="fa fa-repeat" style="margin-right: 8px;"></i>
+                Repeat Order
+            </button>
+        </xpath>
+        <xpath expr="//table[@id='sales_order_table']/thead/tr/th[1]" position="after">
+            <th class="text-left" style="display:none;">Product ID</th>
+            <th class="text-left"></th>
+        </xpath>
+        <xpath expr="//td[@id='product_name']" position="after">
+            <td class="product_id" style="display:none;">
+                <span t-field="line.product_id.id"/>
+            </td>
+            <td>
+                <button href="#" class="btn btn-secondary js_buy_it_again"
+                        style="position: relative;color: white;padding: initial;height: 35px;width: 120px;"
+                        title="Buy it Again">
+                    <i class="fa fa-shopping-cart" style="margin-right: 8px;"></i>
+                    Buy it Again
+                </button>
+            </td>
+        </xpath>
+    </template>
+
+    <template id="copy_order_button_tree" inherit_id="sale.portal_my_orders">
+        <xpath expr="//t/t/thead/tr/th[2]" position="before">
+            <th class="text-center" style="display:none;">ID</th>
+            <th class="text-center">Repeat Order</th>
+        </xpath>
+        <xpath expr="//t/t/t/tr/td[1]" position="after">
+            <td class="text-center" style="display:none;">
+                <span t-field="order.id"/>
+            </td>
+            <td class="text-center">
+                <button href="#" class="btn btn-secondary js_copy_order_from_tree"
+                        style="color: white;padding: inherit;" title="Repeat Order">
+                    <i class="fa fa-repeat" style="margin-right: 8px;"></i>
+                    Repeat Order
+                </button>
+            </td>
+        </xpath>
+    </template>
+</odoo>

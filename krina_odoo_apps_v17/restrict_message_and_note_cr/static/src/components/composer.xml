@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Part of Odoo Module Developed by Candidroot Solutions Pvt. Ltd.-->
+<!-- See LICENSE file for full copyright and licensing details.-->
+<templates xml:space="preserve" id="template">
+   <t t-inherit="mail.Composer" t-inherit-mode="extension" >
+        <xpath expr="//FileUploader" position="after">
+
+                <Dropdown t-if="props.hasFollowers" position="'bottom-end'" class="'o-mail-Followers d-flex me-1 '" menuClass="'o-mail-Followers-dropdown flex-column ml-max'" menuDisplay="'d-flex'" title="followerButtonLabel" togglerClass="'o-mail-Followers-button btn btn-link d-flex align-items-center text-action px-1 ' + (props.compactHeight ? '' : 'my-2')" >
+                <t t-set-slot="toggler">
+                    <i class="fa fa-user-o me-1" role="img"/>
+                    <span class="o_FollowerListMenu buttonFollowersCount pl-1"/>
+                </t>
+
+                <t t-set-slot="default">
+
+                    <t t-if="props.composer.thread.selfFollower">
+                        <t t-set="follower" t-value="props.composer.thread.selfFollower"/>
+                            <div class="dropdown-item o-mail-Follower d-flex justify-content-between p-0">
+                                <a class="o-mail-Follower-details d-flex align-items-center flex-grow-1 px-3 o-min-width-0" t-att-class="{ 'o-inactive fst-italic opacity-25': !follower.is_active }"  role="menuitem"  >
+                                    <input type="checkbox" name="custom_follower" t-on-click="this._onClickCountFollower" t-attf-value="{{ follower.id }}" style="right:5px;position:relative;"/>
+                                    <img class="o-mail-Follower-avatar me-2 rounded" t-att-src="threadService.avatarUrl(follower.partner, props.composer.thread)" alt=""/>
+                                    <span class="flex-shrink text-truncate" t-esc="follower.partner.name"/>
+                                </a>
+                            </div>
+                        <div t-if="props.composer.thread.followers.length > 0" role="separator" class="dropdown-divider"/>
+                    </t>
+
+                    <t t-if="props.composer.thread.followers.length > 0">
+                        <t t-foreach="props.composer.thread.followers" t-as="follower" t-key="follower.id">
+                            <div class="dropdown-item o-mail-Follower d-flex justify-content-between p-0" >
+                                <a class="o-mail-Follower-details d-flex align-items-center flex-grow-1 px-3 o-min-width-0" t-att-class="{ 'o-inactive fst-italic opacity-25': !follower.is_active }"   role="menuitem"  >
+                                    <input type="checkbox" name="custom_follower" t-on-click="this._onClickCountFollower" t-attf-value="{{ follower.id }}" style="right:5px;position:relative;"/>
+                                    <img class="o-mail-Follower-avatar me-2 rounded" t-att-src="threadService.avatarUrl(follower.partner, props.composer.thread)" alt=""/>
+                                    <span class="flex-shrink text-truncate" t-esc="follower.partner.name"/>
+                                </a>
+                            </div>
+                        </t>
+                    </t>
+
+                </t>
+
+            </Dropdown>
+
+        </xpath>
+   </t>
+</templates>
+
+
+

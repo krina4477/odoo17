@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="payment_transaction_form_cardconnect" model="ir.ui.view">
+        <field name="name">payment.provider.transaction.form.cardconnect</field>
+        <field name="model">payment.transaction</field>
+        <field name="inherit_id" ref="payment.payment_transaction_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet/group[2]" position="after">
+                <notebook>
+                    <page string="Cardconnect Transaction Details">
+                        <group>
+                            <field name="cct_txnid"/>
+                            <field name="cct_txcurrency"/>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>

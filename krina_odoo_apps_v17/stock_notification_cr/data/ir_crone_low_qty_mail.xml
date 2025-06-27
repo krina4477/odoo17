@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ir_cron_check_low_qty_mail_send" model="ir.cron">
+            <field name="name">Check Min Quantity: Check min qty and send mail</field>
+            <field name="model_id" ref="model_product_product"/>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="code">model._cron_low_stock_quantity()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+        </record>
+    </data>
+</odoo>

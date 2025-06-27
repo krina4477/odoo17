@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="ask_question_popup" inherit_id="website_sale.product">
+        <xpath expr="//div[hasclass('js_main_product')]" position="after">
+            <button type="button" class="btn btn-secondary btn-lg mt8" data-bs-toggle="modal" data-bs-target="#askquestion" data-whatever="@mdo"> Ask Question <i class="fa fa-question"/> </button>
+            <div class="modal fade" id="askquestion" tabindex="-1" role="dialog" aria-labelledby="askquestionLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="askquestion" style="margin-top: 9px;"> Ask Question </h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="margin-top: -7px;margin-right: -6px;color: black;"> x
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="call_price_from">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="first-name">Name *</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="text" name="first_name"
+                                               class="form-control"
+                                               required="1" id="first-name"/>
+                                    </div>
+                                    <div class="col-md-3 mt16">
+                                        <label for="email">Email *</label>
+                                    </div>
+                                    <div class="col-md-9 mt16">
+                                        <input type="text" name="email_name"
+                                               class="form-control"
+                                               required="1" id="email"/>
+                                    </div>
+                                    <div class="col-md-3 mt16" style="display: none;">
+                                        <label for="product_name">Product:</label>
+                                    </div>
+                                    <div class="col-md-9 mt16" style="display: none;">
+                                        <input type="text" name="product"
+                                               class="form-control"
+                                               required="0" id="product_name"
+                                               t-att-value="product.name"/>
+                                    </div>
+                                    <div class="col-md-3 mt16" style="display: none;">
+                                        <label for="partner_id">Partner:</label>
+                                    </div>
+                                    <div class="col-md-9 mt16" style="display: none;">
+                                        <input type="text" name="user"
+                                               class="form-control"
+                                               required="0" id="partner_id"
+                                               t-att-value="request.env.user.partner_id.id"/>
+                                    </div>
+                                    <div class="col-md-3 mt16">
+                                        <label for="phone">Phone No *</label>
+                                    </div>
+                                    <div class="col-md-9 mt16">
+                                        <input type="text" name="phone_no"
+                                                   class="form-control"
+                                                   id="phone"/>
+                                    </div>
+                                    <div class="col-md-3 mt16">
+                                        <label for="question">Question *</label>
+                                    </div>
+                                    <div class="col-md-9 mt16">
+                                        <input type="text" name="que"
+                                               class="form-control"
+                                               required="1" id="question"/>
+                                    </div>
+                                    <div class="col-md-3 mt16">
+                                        <label for="details">Details *</label>
+                                    </div>
+                                    <div class="col-md-9 mt16">
+                                        <textarea type="text" name="details"
+                                               class="form-control"
+                                               required="1" id="details">
+                                        </textarea>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary js_send_question" data-bs-dismiss="modal">Send Question</button>
+                            <button type="button" class="btn" style="background-color: #c4c4c4;border: #c4c4c4;" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

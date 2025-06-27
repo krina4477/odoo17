@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--ADDING BUTTON IN POS-->
+<templates id="template" xml:space="preserve">
+    <t t-name="point_of_sale.MultiCurrency">
+         <t t-if="pos.config.enable_multi_currency">
+        <button class="control-button btn btn-light rounded-0 fw-bolder" t-on-click="() => this.onClick()">
+            <i class="fa fa-sticky-note me-1"/>
+            <span> </span>
+            <span>MultiCurrency</span>
+        </button>
+         </t>
+    </t>
+    <t t-name="custom_pos_orderline" t-inherit="point_of_sale.Orderline"
+       t-inherit-mode="extension" owl="1">
+
+        <xpath expr="//div[contains(@class, 'product-price')]//t[@t-esc='line.price']" position="after">
+            <t t-if="line.get_currency_exchange">
+                   /
+            <span class="custom-field-span" style="color:#017e84;">
+                <t t-esc="line.get_currency_exchange"/>
+            </span>
+            </t>
+            <t t-else="">
+                /
+                <span class="custom-field-span" style="color:#017e84;">
+                <t t-esc="line.price"/>
+                </span>
+            </t>
+        </xpath>
+
+</t>
+
+    <t t-name="custom_pos_ProductCard" t-inherit="point_of_sale.ProductCard"
+       t-inherit-mode="extension" owl="1">
+
+        <xpath expr="//div[contains(@class, 'product-content')]//span[@t-esc='props.price']" position="replace">
+            <span t-if="props.price" class="price-tag text-primary py-1 fw-bolder">
+                    <t t-out="props.price"/>
+                <t t-if="state.exchange_currency[props.productId]">
+                     /
+                <span style="color:#017e84;"> <t t-out="state.exchange_currency[props.productId]"/></span>
+                </t>
+            </span>
+        </xpath>
+
+</t>
+
+</templates>
+

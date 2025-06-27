@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="refuse_wizard_form_view" model="ir.ui.view">
+        <field name="name">refuse.wizard.form.view</field>
+        <field name="model">refuse.po.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Refuse Purchase Order">
+                <group>
+                    <field name="reason" required="True"/>
+                </group>
+                <footer>
+                    <button name="refuse_order" string="Refuse" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="refuse_wizard_action" model="ir.actions.act_window">
+        <field name="name">Refuse Purchase Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">refuse.po.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

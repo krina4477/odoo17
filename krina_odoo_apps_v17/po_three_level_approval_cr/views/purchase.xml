@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Button And Fields -->
+	<record id="purchase_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <button name="button_approve" position="replace">
+                <!-- <button name="button_approve" type="object" string="Approve Order" class="oe_highlight"  attrs="{'invisible': [('is_purchase_manager', '=', False)]}"/> -->
+                <button name="button_approve" type="object" string="Approve Order" class="oe_highlight" invisible="is_purchase_manager == False"/>
+            </button>
+            <xpath expr="//form/header" position="inside">
+                <!-- <button name="finance_approve_order" class="oe_highlight" states="" string="Finance Approval" type="object" attrs="{'invisible': [('is_finance_manager', '=', False)]}"/>
+                <button name="director_approval" class="oe_highlight" states="" string="Director Approval" type="object" attrs="{'invisible': [('is_director_manager', '=', False)]}"/>
+                <button name="button_refuse" states="to approve,finance_approval,director_approval" string="Refuse" type="object" groups="purchase.group_purchase_manager,po_three_level_approval_cr.group_finance_manager,po_three_level_approval_cr.group_director_manager"/> -->
+
+                <button name="finance_approve_order" class="oe_highlight" string="Finance Approval" type="object" invisible="is_finance_manager  ==  False"/>
+                <button name="director_approval" class="oe_highlight" string="Director Approval" type="object" invisible="is_director_manager  ==  False"/>
+                <button name="button_refuse" string="Refuse" type="object" groups="purchase.group_purchase_manager,po_three_level_approval_cr.group_finance_manager,po_three_level_approval_cr.group_director_manager"/> 
+
+            </xpath>
+
+            <page name="purchase_delivery_invoice" position="after">
+                <page string="Approve Information">
+                    <group string="Approve Information">
+                        <group>
+                            <field name="approval_department_manager_id" readonly="1"/>
+                            <field name="approval_finance_manager_id" readonly="1"/>
+                            <field name="approval_director_manager_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="manager_approval_date" readonly="1"/>
+                            <field name="finance_approval_date" readonly="1"/>
+                            <field name="director_approval_date" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="purchase_manager_id"/>
+                            <field name="finance_manager_id"/>
+                            <field name="director_manager_id"/>
+                        </group>
+                        <group>
+                            <field name="is_purchase_manager" invisible="1"/>
+                            <field name="is_finance_manager" invisible="1"/>
+                            <field name="is_director_manager" invisible="1"/>
+                        </group>
+                    </group>
+                    <group string="Refuse Information">
+                        <group>
+                            <field name="refuse_by_id" readonly="1"/>
+                            <field name="refuse_date" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="refuse_reason" readonly="1"/>
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>

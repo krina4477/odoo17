@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+            <t t-name="pos_scrap_order_cr.ListRenderer.RecordRow" t-inherit="web.ListRenderer.RecordRow"
+               t-inherit-mode="extension" owl="1">
+        <xpath expr="//button[@name='delete']" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+    </t>
+
+</templates>

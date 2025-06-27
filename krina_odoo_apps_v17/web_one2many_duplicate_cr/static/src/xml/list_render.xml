@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+
+    <t t-name="web_one2many_duplicate_cr.duplicateListRenderer" t-inherit="web.ListRenderer" t-inherit-mode="primary" owl="1">
+        <xpath expr="//table/thead/tr" position="inside">
+            <th t-if="isX2Many"></th>
+        </xpath>
+    </t>
+
+    <t t-name="web_one2many_duplicate_cr.ListRenderer.RecordRow" t-inherit="web.ListRenderer.RecordRow" t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-if='displayOptionalFields or hasX2ManyAction']/t/td" position="after">
+            <td class="o_list_record_copy text-center"
+                t-on-keydown.synthetic="(ev) => this.onCellKeydown(ev, group, record)"
+                t-on-click.stop="() => this.onCopyRecord(record)"
+                tabindex="-1"
+                style="padding-right: 0px;"
+            >
+                <span class="fa fa-copy"
+                    name="copy"
+                    aria-label="Copy Row"
+                    tabindex="-2"
+                />
+            </td>
+        </xpath>
+    </t>
+</templates>

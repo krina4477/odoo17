@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="product_category_form_view" model="ir.ui.view">
+        <field name="name">product.category.form.view</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+<!--            <xpath expr="//div[hasclass('oe_title')]" position="before">-->
+<!--                <field name="image" widget="image" class="oe_avatar"/>-->
+<!--            </xpath>-->
+            <xpath expr="//group[@name='first']" position="after">
+                <group name="lightspeed" string="Lightspeed">
+<!--                    <field name="description"/>-->
+                    <field name="lightspeed_id"/>
+                    <field name="shop_id"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="lightspeed_stock_product_category_action" model="ir.actions.act_window">
+        <field name="name">Product Categories</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.category</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="domain">[('lightspeed_id','!=',False)]</field>
+        <field name="search_view_id" ref="product.product_category_search_view"/>
+    </record>
+
+    <menuitem name="Product Category"
+        id="menu_product_category"
+        parent = "menu_products"
+        action = "lightspeed_stock_product_category_action"
+        sequence="3"/>
+</odoo>

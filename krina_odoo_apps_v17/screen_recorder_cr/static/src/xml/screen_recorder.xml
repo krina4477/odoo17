@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="screen_recorder_cr.ScreenRecorder">
+        <t t-if="canRecord">
+            <div class="o-dropdown dropdown o-mail-DiscussSystray-class stop_record d-none" t-on-click="_onClickStop" style="display:flex; align-items:center; padding: 5px">
+                <i class="fa fa-solid fa-stop" style="color: #ff0000;"/>
+            </div>
+            <div class="o-dropdown dropdown o-mail-DiscussSystray-class start_record" style="display:flex; align-items:center; padding: 5px;" t-on-click="_onClickRecord">
+                <i class="fa fa-video-camera record " style="color:green;" aria-label="Record" t-ref="record"/>
+            </div>
+        </t>
+    </t>
+</templates>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mail_template_stock_notification_cr" model="mail.template">
+        <field name="name">Reminder: Low Quantity Products List</field>
+        <field name="model_id" ref="product.model_product_product"/>
+        <field name="subject">Reminder : Low Quantity Product List</field>
+        <field name="email_to">{}</field>
+        <field name="description">Send to Inventory Manager for inform the Low Quantity Products</field>
+        <field name="body_html" type="html">
+            <div>
+                <span>
+                    <strong>Hello Manager,</strong>
+                    <br></br>
+                </span>
+                <p>Please refer below list of products whose quantities are less than the desired number of inventory.
+                </p>
+                <table class="table table-bordered" style="table-layout:auto">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Sr.No.</th>
+                            <th class="text-center">Product name</th>
+                            <th class="text-center">Set Min Qty</th>
+                            <th class="text-center">On Hand Qty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="product_count" t-value="0"/>
+                        <tr t-foreach="ctx['low_product_qty_list']" t-as="product">
+                            <t t-set="product_count" t-value="product_count + 1"/>
+                            <td class="text-center">
+                                <t t-esc="product_count"/>
+                            </td>
+                            <td class="text-left">
+                                <span t-esc="product['product_name']"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="product['min_qty']"/>
+                            </td>
+                            <td class="text-center" style="color:red;font-weight: bold;">
+                                <span t-esc="product['on_hand_qty']"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td t-att-colspan="3" align="center">
+                                <strong>Total Product</strong>
+                            </td>
+                            <td t-att-colspan="1" align="center">
+                                <strong>
+                                    <t t-esc="product_count"/>
+                                </strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br></br>
+                <span style="color:red;font-style:italic;">This is system generated mail. Don't need to reply.</span>
+                <br></br>
+                <br></br>
+                <span>Thanks &amp; Regards</span>
+                <br></br>
+                <span>Odoo Boot</span>
+            </div>
+        </field>
+        <field name="lang">{}</field>
+        <field name="auto_delete" eval="True"/>
+    </record>
+</odoo>

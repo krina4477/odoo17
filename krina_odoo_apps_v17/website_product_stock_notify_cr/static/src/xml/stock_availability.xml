@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="website_product_stock_notify_cr.product_availability" inherit_id="website_sale_stock.product_availability">
+        <label style="color:red">Product Quantity is out of stock !!</label>
+       
+        <div t-attf-class="availability_message" class="container">
+            <div class="notify-me__start-text">Notify me when the product is available</div>
+            <form class="clearfix" action="/product_notify_me">
+                <div class="check-mail d-flex flex-wrap align-items-center">
+                    <div>
+                        <input type="text" name="email" value="" placeholder="Enter the Email Address" class="form-control error-input email-form" required="required"/>
+
+                        <input type="hidden" name="product" t-att-value="product_id" id="product" class="form-control"/>
+                    </div>
+                    <div class="button" style="margin-left:10px;">
+                        <button href="#" class="btn btn-primary notify_me_button">
+                            <i class="fa fa-bell"/>
+                            <span>Notify Me</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </t>
+</templates>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="mail_failure_jobs_notification" model="mail.template">
+            <field name="name">Failure Jobs Notification</field>
+            <field name="model_id" ref="lightspeed_connector_cr.model_lightspeed_shop"/>
+            <field name="email_from">{{ ctx['email_from'] }}</field>
+            <field name="email_to">{{ ctx['email_to'] }}</field>
+            <field name="subject">Failure Jobs Notification</field>
+            <!--        <field name="lang">{{ ctx.get('default_lang') }}</field>-->
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0"
+                       style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                   style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                                <tbody>
+                                    <tr>
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="top" style="font-size: 13px;">
+                                                        <div>
+                                                            <t t-set="lines" t-value="ctx.get('failure_jobs', [])"/>
+                                                            <p>
+                                                                Dear ,
+                                                            </p>
+                                                            <p>
+                                                                Here is failure jobs notification in detail:
+                                                            </p>
+
+                                                            <table>
+                                                                <thead>
+                                                                    <tr style="background-color:rgb(233,232,233);">
+                                                                        <th style="width: 100%; min-width: 96px; font-size: 13px;">
+                                                                            <strong>Record name</strong>
+                                                                        </th>
+                                                                        <th style="width: 100%; min-width: 96px; font-size: 13px;">
+                                                                            <strong>Import Object Name</strong>
+                                                                        </th>
+                                                                        <th style="width: 100%; min-width: 96px; font-size: 13px;">
+                                                                            <strong>Failure Message</strong>
+                                                                        </th>
+                                                                        <th style="width: 100%; min-width: 96px; font-size: 13px;">
+                                                                            <strong>Json Data</strong>
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr t-foreach="lines" t-as="line">
+                                                                        <td style="width: 100%; font-size: 13px;" valign="top" t-out="line['record_name'] or ''"></td>
+                                                                        <td style="width: 100%; font-size: 13px;" valign="top" t-out="line['import_obj'] or ''"></td>
+                                                                        <td style="width: 100%; font-size: 13px;" valign="top" t-out="line['failure_msg'] or ''"></td>
+                                                                        <td style="width: 100%; font-size: 13px;" valign="top" t-out="line['response_json'] or ''"></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                </table>
+            </field>
+        </record>
+
+    </data>
+</odoo>

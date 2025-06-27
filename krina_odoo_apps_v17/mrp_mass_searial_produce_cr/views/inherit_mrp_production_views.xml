@@ -1,0 +1,13 @@
+<odoo>
+    <record id="mrp_production_form_view_inherited" model="ir.ui.view">
+        <field name="name">mrp.production.view.inherited</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_serial_mass_produce_wizard']" position="replace">
+                <button name="button_mark_done_new" invisible="not show_serial_mass_produce" string="Mass Produce"
+                        type="object"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

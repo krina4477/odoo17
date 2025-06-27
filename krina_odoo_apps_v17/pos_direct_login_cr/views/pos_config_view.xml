@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of Odoo Module Developed by Candidroot Solutions Pvt. Ltd.-->
+<!-- See LICENSE file for full copyright and licensing details.-->
+<odoo>
+	<record id="res_users_form_inherit" model="ir.ui.view">
+        <field name="name">res.users.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="point_of_sale" string="Point of Sale">
+                    <group>
+                        <field name="pos_config_id"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

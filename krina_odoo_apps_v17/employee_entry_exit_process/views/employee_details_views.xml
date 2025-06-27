@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="employee_details_form_view" model="ir.ui.view">
+        <field name="name">employee.details.form</field>
+        <field name="model">employee.details</field>
+        <field name="arch" type="xml">
+            <form string="Employee Details">
+                <header>
+                     <!-- Create Employee Button -->
+                    <button name="action_create_employee"
+                            type="object"
+                            string="Create Employee"
+                            class="oe_highlight"/>
+
+                    <!-- Create Portal User Button -->
+                    <button name="action_create_portal_user"
+                            type="object"
+                            string="Create Portal User"
+                            class="oe_highlight"/>
+
+                    <!-- Contract Button -->
+                    <button name="action_create_contract"
+                            type="object"
+                            string="Contract"
+                            class="oe_highlight"/>
+
+                    <!-- Leave Allocation Button -->
+                    <button name="action_open_leave_wizard"
+                            type="object"
+                            string="Leave Allocation"
+                            class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_employees"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o"
+                                >
+                            <field name="employee_count" widget="statinfo" string="Employee"/>
+                        </button>
+                        <button name="action_open_contracts"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o"
+                        >
+                            <field name="contract_count" widget="statinfo" string="Contracts"/>
+                        </button>
+                        <button name="action_open_leaves"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o"
+                        >
+                            <field name="leave_count" widget="statinfo" string="Leaves"/>
+                        </button>
+
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="email"/>
+                            <field name="address"/>
+                            <field name="date_of_birth"/>
+                            <field name="job_position"/>
+                            <field name="manager_id"/>
+                            <field name="phone"/>
+                        </group>
+                        <group>
+                            <field name="joining_date"/>
+                            <field name="salary_amount"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="employee_details_tree_view" model="ir.ui.view">
+        <field name="name">employee.details.tree</field>
+        <field name="model">employee.details</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Details">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="joining_date"/>
+                <field name="salary_amount"/>
+            </tree>
+        </field>
+    </record>
+
+
+</odoo>

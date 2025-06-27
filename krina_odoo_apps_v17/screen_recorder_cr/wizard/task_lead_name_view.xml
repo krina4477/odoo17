@@ -1,0 +1,27 @@
+<odoo>
+    <record id="wizard_task_name_lead_form_view" model="ir.ui.view">
+        <field name="name">wizard.task.lead.name.form.view</field>
+        <field name="model">wizard.task.lead.name</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_task_lead_name" string="Create" type="object" class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="wizard_task_name_action_view" model="ir.actions.act_window">
+        <field name="name">Name</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wizard.task.lead.name</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_task_name_lead_form_view"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

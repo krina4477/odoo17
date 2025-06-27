@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- subscription Tree View  -->
+    <record model="ir.ui.view" id="subscription_request_tree">
+        <field name="name">subscription.request.tree</field>
+        <field name="model">subscription.requests</field>
+        <field name="arch" type="xml">
+            <tree string="subscription Requests">
+                <field name="user_id"/>
+                <field name="product_id"/>
+                <field name="customer_email"/>
+                <field name="customer_phone_no"/>
+                <field name="Company"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- subscription Form View  -->
+    <record model="ir.ui.view" id="subscription_request_form">
+        <field name="name">subscription.request.form</field>
+        <field name="model">subscription.requests</field>
+        <field name="arch" type="xml">
+            <form string="subscription Requests">
+                <header>
+                    <button name="notify_button" type="object" class="oe_highlight" string="Notify Customer" invisible = "state in ('cancel', 'notified')"/>
+                    <button name="notify_cancel_button" type="object" class="oe_highlight" string="Cancel" invisible = "state in ('notified', 'cancel')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,notified"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="product_id"/>
+                            <field name="create_date"/>
+                        </group>
+                        <group>
+                            <field name="customer"/>
+                            <field name="customer_email"/>
+                            <field name="customer_phone_no"/>
+                            <field name="Company"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- subscription action  -->
+    <record model="ir.actions.act_window" id="subscription_request">
+        <field name="name">Subscription Requests</field>
+        <field name="res_model">subscription.requests</field>
+        <field name="view_id" ref="subscription_request_tree"/>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                No Subscription Requests found
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_subscription_action"
+              parent="website.menu_website_global_configuration" sequence="90" name="Product Subscription Request"/>
+    <menuitem id="menu_subscription_request_website_action" action="subscription_request"
+              parent="website_product_stock_notify_cr.menu_subscription_action" name="Subscription Request">
+    </menuitem>
+
+
+</odoo>

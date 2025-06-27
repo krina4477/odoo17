@@ -1,0 +1,108 @@
+<odoo>
+    <record id="view_form_pos_scrap_history" model="ir.ui.view">
+        <field name="name">pos.scrap.history.form</field>
+        <field name="model">pos.scrap.history</field>
+        <field name="arch" type="xml">
+            <form string="Pos Scrap History">
+                <sheet>
+                    <group>
+                        <field name="date" readonly="1"/>
+                        <field name="pos_session" readonly="1"/>
+                        <field name="user_id" readonly="1"/>
+                        <field name="partner_id" readonly="1"/>
+                        <field name="table_id" readonly="1"/>
+                        <field name="customer_count" readonly="1"/>
+                        <field name="pos_config" readonly="1"/>
+                        <field name="reason" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="product_id"/>
+                        <field name="quantity"/>
+                        <field name="price_unit" readonly="1"/>
+                        <field name="subtotal"/>
+                        <field name="scrap_location_id" readonly="1"/>
+                    </group>
+
+                    <!--                    <notebook>-->
+<!--                        <page string="History Lines">-->
+<!--                            <field name="scrap_history_line_ids">-->
+<!--                                <tree editable="bottom">-->
+<!--                                    <field name="product_id"/>-->
+<!--                                    <field name="quantity"/>-->
+<!--                                    <field name="price_unit" readonly="1"/>-->
+<!--                                    <field name="subtotal"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                        </page>-->
+<!--                    </notebook>-->
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tree_pos_scrap_history" model="ir.ui.view">
+        <field name="name">pos.scrap.history.tree</field>
+        <field name="model">pos.scrap.history</field>
+        <field name="arch" type="xml">
+            <tree string="Pos Scrap History">
+                <field name="date" readonly="1"/>
+                <field name="pos_session" readonly="1"/>
+                <field name="user_id" readonly="1"/>
+                <field name="partner_id" readonly="1"/>
+                <field name="table_id" readonly="1"/>
+                <field name="customer_count" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pos_scrap_history_search" model="ir.ui.view">
+        <field name="name">pos.scrap.history.search</field>
+        <field name="model">pos.scrap.history</field>
+        <field name="arch" type="xml">
+            <search string="Pos Scrap History">
+                <field name="pos_session"/>
+                <field name="user_id"/>
+                <field name="partner_id"/>
+                <field name="table_id"/>
+                <group expand="0" string="Group By...">
+                    <filter
+                            name="group_by_product_id"
+                            string="Product"
+                            domain="[]"
+                            context="{'group_by':'product_id'}"
+                    />
+                    <filter
+                            name="group_by_partner_id"
+                            string="Partner"
+                            domain="[]"
+                            context="{'group_by':'partner_id'}"
+                    />
+                    <filter
+                            name="group_by_table_id"
+                            string="Table"
+                            domain="[]"
+                            context="{'group_by':'table_id'}"
+                    />
+                    <filter
+                            name="group_by_create_date"
+                            string="Date"
+                            domain="[]"
+                            context="{'group_by':'create_date'}"
+                    />
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+    <record id="action_pos_scrap_history" model="ir.actions.act_window">
+        <field name="name">Pos Scrap History</field>
+        <field name="res_model">pos.scrap.history</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_pos_scrap_history" name="Pos Scrap History"
+              parent="point_of_sale.menu_point_config_product"
+              action="action_pos_scrap_history"
+              sequence="10"/>
+</odoo>

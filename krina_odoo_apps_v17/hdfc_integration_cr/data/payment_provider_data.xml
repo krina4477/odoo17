@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+    <record id="payment_acquirer_hdfc" model="payment.provider">
+        <field name="code">hdfc</field>
+        <field name="name">HDFC</field>
+        <field name="image_128" type="base64" file="hdfc_integration_cr/static/src/img/img.png"/>
+        <field name="redirect_form_view_id" ref="redirect_form"/>
+        <field name="payment_method_ids" eval="[Command.set([
+            ref('payment.payment_method_bank_account')
+        ])]"/>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="module_id" ref="base.module_hdfc_integration_cr"/>
+        <field name="allow_tokenization">True</field>
+        <field name="allow_express_checkout">True</field>
+    </record>
+</odoo>

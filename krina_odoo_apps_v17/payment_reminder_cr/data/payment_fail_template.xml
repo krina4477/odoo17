@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="payment_failed_template" model="mail.template">
+            <field name="name">Payment Failed Notification</field>
+            <field name="model_id" ref="payment.model_payment_transaction"/>
+            <field name="email_from">{{(object.sale_order_ids.company_id.email or user.email)}}</field>
+            <field name="email_to">{{object.partner_id.email}}</field>
+            <field name="subject">Payment Failed Notification</field>
+            <field name="body_html" type="html">
+                <div class="abc" style="background-color: lightgrey;;padding: 30px;">
+                    <div class="main"
+                         style="border: 1px solid lightgrey;padding: 50px;margin-left: 100px;margin-right: 100px;background-color: white;">
+                        <div class="logo">
+                            <img src="/logo.png?company={{object.sale_order_ids.company_id.id}}"
+                                 style="padding: 0px; margin: 0px; height: auto; width: 80px;"
+                                 alt="{{object.sale_order_ids.company_id.name}}"/>
+                        </div>
+                        <hr style="margin-top:20px"></hr>
+                        <div class="content">
+                            <h1>Transaction Failure</h1>
+                            <p>Your transaction failed while attempting to process a transaction for:
+                                <strong>
+                                    <t t-esc="object.sale_order_ids.amount_total"/>
+                                    <t t-esc="object.sale_order_ids.currency_id.name"/>
+                                </strong>
+                            </p>
+                            <p>To pay your amount again Please Click here:</p>
+                            <br></br>
+                            <div class="link" style="text-align:center;">
+                                <t t-set="lines" t-value="ctx['link']"/>
+                                <a t-attf-href="{{ lines }}"
+                                    target="_blank"
+                                    style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                    Payment Link
+                                </a>
+                              
+                            </div>
+                            <p style="margin-top: 50px;">Thanks,</p>
+
+                            <p style="color:black;"><t t-esc="user.signature"/></p>
+
+                            <p style="color:black;">Let us know if you have any question or need help.</p>
+                        </div>
+                        <hr style="margin-top:20px;margin-bottom:20px;"></hr>
+                        <div class="footer">
+                            <p valign="middle" align="left" style="opacity: 0.7;">
+                                <t t-esc="object.sale_order_ids.company_id.phone"/>
+                                <t t-if="object.sale_order_ids.company_id.email">
+                                    |
+                                    <a href="'mailto:%s' % {{object.sale_order_ids.company_id.email}}"
+                                       style="text-decoration:none; color: #454748;">
+                                        <t t-esc="object.sale_order_ids.company_id.email"/>
+                                    </a>
+                                </t>
+                               
+                                <t t-if="object.sale_order_ids.company_id.website">
+                                    |
+                                    <a href="'%s' % {{object.sale_order_ids.partner_id.company_id.website}}"
+                                       style="text-decoration:none; color: #454748;">
+                                        <t t-esc="object.sale_order_ids.company_id.website"/>
+                                    </a>
+                                </t>
+                                
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

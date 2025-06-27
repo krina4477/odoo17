@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="deposit_product_view_product_packaging" model="ir.ui.view">
+        <field name="name">product.packaging.deposit.product</field>
+        <field name="model">product.packaging</field>
+        <field name="inherit_id" ref="product.product_packaging_tree_view"/>
+        <field name="priority" eval="1000"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="deposit_type" invisible="1"/>
+                <!-- <field name="deposit_product_id" domain="[('deposit_type', '=', 'deposit_product')]" 
+                     attrs="{'required': [('deposit_type', '=', 'has_deposit')]}"/> -->
+                <field name="deposit_product_id" domain="[('deposit_type', '=', 'deposit_product')]"/>
+                      
+                
+            </field>
+        </field>
+    </record>
+
+</odoo>

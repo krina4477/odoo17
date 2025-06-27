@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="show_duplicate_value_form" model="ir.ui.view">
+            <field name="name">show.duplicate.value.form</field>
+            <field name="model">show.duplicate.value</field>
+            <field name="arch" type="xml">
+                <form string="List Out Show Duplicate Fields">
+                    <sheet>
+                        <group>
+                            <field name="model_id" required="1"/>
+                            <field name="field_ids" widget="many2many_tags" required="1" domain="[('model_id', '=', model_id)]"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="show_duplicate_value_tree" model="ir.ui.view">
+            <field name="name">show.duplicate.value.tree</field>
+            <field name="model">show.duplicate.value</field>
+            <field name="arch" type="xml">
+                <tree string="List Out Show Duplicate Fields" editable="top" duplicate="false" edit="1" create="1" delete="1">
+                    <field name="model_id" required="1"/>
+                    <field name="field_ids" widget="many2many_tags" required="1" domain="[('model_id', '=', model_id)]"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="show_duplicate_value_search" model="ir.ui.view">
+            <field name="name">show.duplicate.value.search</field>
+            <field name="model">show.duplicate.value</field>
+            <field name="arch" type="xml">
+                <search string="List Out Show Duplicate Fields">
+                    <field name="model_id" string="Model"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Model" name="group_by_object" domain="[]" context="{'group_by':'model_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_show_duplicate_value" model="ir.actions.act_window">
+            <field name="name">List Out Show Duplicate Fields</field>
+            <field name="res_model">show.duplicate.value</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="show_duplicate_value_tree"/>
+            <field name="target">current</field>
+        </record>
+
+        <menuitem name="List Out Show Duplicate Fields"
+                  id="menu_show_duplicate_value"
+                  sequence="999"
+                  parent="base.menu_custom"
+                  action="action_show_duplicate_value"/>
+    </data>
+</odoo>

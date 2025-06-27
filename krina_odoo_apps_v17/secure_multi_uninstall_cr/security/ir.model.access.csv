@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_module_uninstall_duplicate,module.uninstall.duplicate,model_module_uninstall_duplicate,,1,1,1,1
+access_action_log,action.log,model_action_log,,1,1,1,1

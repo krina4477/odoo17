@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_config_cache_data_form_view" model="ir.ui.view">
+        <field name="name"></field>
+        <field name="model">pos.config.cache.data</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="import_cache_data" string="Import Data" type="object" class="oe_highlight" />
+                </header>
+                <sheet>
+                    <group>
+                        <field name="config_id" />
+                        <field name="model_name" />
+                        <field name="session_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pos_config_cache_data_tree_view" model="ir.ui.view">
+        <field name="name">pos.config.cache.data.view.tree</field>
+        <field name="model">pos.config.cache.data</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="config_id" optional="show"/>
+                <field name="model_name" optional="show"/>
+                <field name="session_id" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="pos_config_cache_data_action" model="ir.actions.act_window">
+        <field name="name">Pos Config Cache Data</field>
+        <field name="res_model">pos.config.cache.data</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_pos_config_cache_data_tree_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="act_window_id" ref="pos_config_cache_data_action"/>
+        <field name="view_id" ref="sh_pos_advance_cache.pos_config_cache_data_tree_view"/>
+    </record>
+
+    <record id="action_pos_config_cache_data_form_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">form</field>
+        <field name="act_window_id" ref="pos_config_cache_data_action"/>
+        <field name="view_id" ref="sh_pos_advance_cache.pos_config_cache_data_form_view"/>
+    </record>
+
+    <menuitem id="action_pos_config_cache_data_menu" name="POS Cache Data" action="pos_config_cache_data_action" parent="point_of_sale.menu_point_config_product" sequence="1" />
+
+</odoo>

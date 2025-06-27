@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_system_directory,access.system.directory,model_system_directory,base.group_user,1,1,1,1
+access_directory_tags,access.directory.tags,model_directory_tags,base.group_user,1,1,1,1
+access_file_tags,access.file.tags,model_file_tags,base.group_user,1,1,1,1
+access_fetch_mail_config,access.fetch.mail.config,model_fetch_mail_config,base.group_user,1,1,1,1

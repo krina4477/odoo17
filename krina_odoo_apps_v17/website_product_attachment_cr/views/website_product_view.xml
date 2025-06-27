@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="product_attachment" name="Product Attachments" inherit_id="website_sale.product" active="True" priority="20">
+        <xpath expr="//div[@id='o_product_terms_and_share']" position="before">
+            <t t-set="val" t-value="product.sudo().attachment_ids"/>
+            <t t-if="val">
+                <div class = "mb-3">
+                    <h3 class="fw-bold">Related Attachments</h3>
+                    <t t-foreach="val" t-as="attachment">
+
+                        <div class="list-group">
+                            <a t-att-href="'/attachment/download?attachment_id=%i' % attachment.id" class="list-group-item list-group-item-action active mb-1">
+                                <span class = "" t-esc="attachment.name"/>
+                            </a>
+                        </div>
+
+                    </t>
+                </div>
+            </t>
+            <t t-else="">
+            </t>
+        </xpath>
+    </template>
+</odoo>

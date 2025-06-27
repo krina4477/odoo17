@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="show_all_records_pager_cr.Pager" t-inherit="web.Pager" t-inherit-mode="extension" owl="1">
+        <xpath expr="//nav[hasclass('o_pager')]" position="inside">
+            <t t-if="props.initial_limit and props.initial_limit &lt;= props.total">
+                <t t-if="props.limit == props.total">
+                    <button t-on-click="_showAll" type="button" class="btn btn-link" title="Show All Records"
+                            style="font-size:10px;"> Reset</button>
+                </t>
+                <t t-else="">
+                    <button t-on-click="_showAll" type="button" class="btn btn-link o_pager_show_all"
+                            title="Show All Records" style="font-size:10px;"> Show All</button>
+                </t>
+            </t>
+            <t t-elif="props.limit and props.limit &lt;= props.total">
+                <t t-if="props.limit == props.total">
+                    <button t-on-click="_showAll" type="button" class="btn btn-link" title="Show All Records"
+                            style="font-size:10px;"> Reset</button>
+                </t>
+                <t t-else="">
+                    <button t-on-click="_showAll" type="button" class="btn btn-link o_pager_show_all"
+                            title="Show All Records" style="font-size:10px;"> Show All</button>
+                </t>
+            </t>
+        </xpath>
+    </t>
+</templates>

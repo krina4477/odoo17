@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="acquirer_partner_tags" model="ir.ui.view">
+        <field name="name">payment.provider.form.inherit</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <xpath expr='//field[@name="available_country_ids"]' position='after'>
+                <field name="tag_ids" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

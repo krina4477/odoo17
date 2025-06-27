@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ <record id="payment_acquirer_form_hdfc" model="ir.ui.view">
+        <field name="name">payment.acquirer.form.hdfc.inherit</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <xpath expr='//group[@name="provider_credentials"]' position='after'>
+                <group invisible="code != 'hdfc'">    
+                    <field name="hdfc_merchant_key" password="True" required="code == 'hdfc' and state != 'hdfc'" />
+                    <field name="hdfc_access_code" password="True" required="code == 'hdfc' and state != 'hdfc'"/>
+                    <field name="hdfc_working_key" password="True" required="code == 'hdfc' and state != 'hdfc'"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

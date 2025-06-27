@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="SwitchCompanyMenuExtend" t-inherit="web.SwitchCompanyMenu" owl="1" t-inherit-mode="extension">
+    <xpath expr="//t[@t-set-slot='toggler']" position="after">
+        <div class="d-flex">
+            <div
+                role="menuitemcheckbox"
+                tabindex="0"
+                class="border-right toggle_company o_py">
+                <span class="btn btn-light border-0 p-2">
+                    <input type="checkbox" class="fa fa-fw py-2" t-on-click="select_all_company"/>
+                </span>
+            </div>
+            <div
+                role="button"
+                tabindex="0"
+                class="d-flex flex-grow-1 align-items-center py-0 log_into pl-2 o_py btn btn-light font-weight-normal border-0"
+                >
+                <span
+                    class='company_label pr-3 ml-1'>
+                    <input type="text" t-on-keyup="search_company" placeholder="Search Company" class="company_search_bar2" name="company_search_bar"/>
+                </span>
+            </div>
+        </div>
+    </xpath>
+    <xpath expr="//t[@t-as='company']" position="attributes">
+        <attribute name="t-foreach">Object.values(company.allowedCompanies).sort((a, b) => a.name.localeCompare(b.name))</attribute>
+    </xpath>
+</t>
+
+</templates>

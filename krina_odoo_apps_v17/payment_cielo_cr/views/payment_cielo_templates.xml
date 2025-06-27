@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="inline_form">
+            <div t-attf-id="o_cielo_form_{{provider_id}}" class="o_authorize_form">
+                <div class="form-group">
+                    <label t-attf-for="o_cielo_card_{{provider_id}}" class="col-form-label">Card Number</label>
+                    <input type="text" name="cc_number" t-attf-id="o_cielo_card_{{provider_id}}" required="True" maxlength="19" class="form-control cc_number"/>
+                    <div style="position: static;margin-top: -4%;float: right;margin-right: 6%;" class="card_placeholder"> </div>
+                    <div class="visa"> </div>
+                    <input type="hidden" t-attf-id="o_cielo_brand_{{provider_id}}" name="cc_brand" value=""/>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 form-group">
+                        <label t-attf-for="o_cielo_month_{{provider_id}}">Expiration</label>
+                        <div class="input-group">
+                            <input type="number" name="cc_expiry_month" t-attf-id="o_cielo_month_{{provider_id}}" placeholder="MM" min="1" max="12" required="True" class="form-control"/>
+                            <input type="number" name="cc_expiry_year" t-attf-id="o_cielo_year_{{provider_id}}" placeholder="YY" min="00" max="99" required="True" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label t-attf-for="o_cielo_code_{{provider_id}}">Card Code</label>
+                        <input type="number" name="cvc" t-attf-id="o_cielo_code_{{provider_id}}" max="9999" class="form-control cc_cvc" required="True"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label t-attf-for="o_cielo_card_holder_name_{{provider_id}}" class="col-form-label">Cardholder name</label>
+                    <input type="text" name="cc_holder_name" t-attf-id="o_cielo_card_holder_name_{{provider_id}}" class="form-control" required="True"/>
+                </div>
+                <input type="hidden" name="provider_id" t-att-value="provider_id"/>
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+            </div>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_generate_barcode_wizard,access.generate.barcode.wizard,model_generate_barcode_wizard,,1,1,1,1
+access_product_details_wizard,access.product.details.wizard,model_product_details_wizard,,1,1,1,1
+access_template_barcode_wizard,access.template.barcode.wizard,model_template_barcode_wizard,,1,1,1,1
+access_template_details_wizard,access.template.details.wizard,model_template_details_wizard,,1,1,1,1

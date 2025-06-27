@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="purchased_order_button_inherit" model="ir.ui.view">
+        <field name="name">purchased.button.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="purchase.view_product_template_purchase_buttons_from"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_po']" position="after">
+                <button class="oe_stat_button" name="action_view_purchaseorder" type="object"
+                        icon="fa-shopping-cart" invisible="purchase_ok == False"
+                        help="Purchased in the last 365 days">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="purchase_order_count" widget="statinfo" nolabel="1" class="mr4"/>
+                        </span>
+                        <span class="o_stat_text">Purchase order</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_button_inherit" model="ir.ui.view">
+        <field name="name">sale.order.button.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="sale.product_template_form_view_sale_order_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@class='oe_stat_button']" position="after">
+                <button class="oe_stat_button" name="action_view_saleorder" type="object"
+                        icon="fa-dollar">
+                    <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value">
+                                <field name="sale_order_count" widget="statinfo" nolabel="1" class="mr4"/>
+                            </span>
+                        <span class="o_stat_text">Sale order</span>
+                    </div>
+                </button>
+                <button class="oe_stat_button" name="action_view_invoices" type="object"
+                        icon="fa-edit">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="invoice_count" widget="statinfo" nolabel="1" class="mr4"/>
+                        </span>
+                        <span class="o_stat_text">Customer Invoices</span>
+                    </div>
+                </button>
+                <button class="oe_stat_button" type="object" name="action_view_bills"
+                        icon="fa-file-o">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="vendor_bills_count" widget="statinfo" nolabel="1" class="mr4"/>
+                        </span>
+                        <span class="o_stat_text">Vendor Bills</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

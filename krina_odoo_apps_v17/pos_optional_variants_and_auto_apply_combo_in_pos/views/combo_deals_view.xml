@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Combo Deals Tree view  --> 
+	<record id="combo_deals_tree_view" model="ir.ui.view">
+		<field name="name">combo.deals.tree.view</field>
+		<field name="model">combo.deals</field>			
+		<field name="arch" type="xml">
+			<tree string="Combo Deals">
+				<field name="name"/>
+				<field name="state"/>
+			</tree>
+		</field>
+	</record>
+
+	<!-- Combo Deals Form View -->
+	<record id="combo_deals_form_view" model="ir.ui.view">
+		<field name="name">combo.deals.form.view</field>
+		<field name="model">combo.deals</field>			
+		<field name="arch" type="xml">				
+			<form string="Combo Deals">
+				<header>
+					<button string="Approve" type="object" name="approve_combo" class="btn-primary" invisible="state != 'draft'"/>
+					<button string="Expire" type="object" name="expire_combo" class="btn-primary" invisible="state != 'approve'"/>
+					<button string="Reset to draft" type="object" name="reset_to_draft" class="btn-primary" invisible="state != 'expire'"/>
+					<field name="state" widget="statusbar"/>
+				</header>
+				<sheet>
+					<div class="oe_button_box" name="button_box">
+                        <button name="action_view_combo_pos" type="object" class="oe_stat_button" icon="fa-pencil-square-o" invisible = "'combo_count' == 0">
+                            <field name="combo_count" widget="statinfo" string="Pos Orders"/>
+                        </button>
+                    </div>
+					<div class="oe_title">
+                        <label class="oe_edit_only" for="name" string="Combo Name"/>
+                    	<h1>
+                    		<field name="name" placeholder="Combo Name"/>
+                    	</h1>
+                    </div>
+					<group>
+						<group>
+							<field name="related_product_tmpl_id"/>
+							<field name="currency_id" invisible="1"/>
+						</group>
+					</group>
+					<notebook>
+                        <page string="Combo Lines" name="combo_line_ids">
+                            <field name="combo_line_ids" widget="section_and_note_one2many" mode="tree">
+                                <tree string="Combo Deal Lines" editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="name"/>
+                                    <field name="product_uom_qty"/>
+                                    <field name="price_unit"/>
+                                    <field name="price_subtotal" force_save="1"/>
+                                </tree>
+                            </field>
+                            <group colspan="2" class="oe_subtotal_footer oe_right">
+	                            <field name="amount_total" widget="monetary" force_save="1"/>
+	                            <field name="discount" widget="monetary" />
+	                            <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+	                                <label for="price_total" />
+	                            </div>
+	                            <field name="price_total" nolabel="1" widget="monetary" force_save="1" class="oe_subtotal_footer_separator"/>
+	                        </group>
+                       	</page>
+                    </notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- Combo Deals Action -->
+	<record id="combo_deals_action" model="ir.actions.act_window">
+        <field name="name">Combo Deals</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">combo.deals</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Combo Deals Menu -->
+	<menuitem   id="combo_deals"
+                name="Combo Deals"
+                action="combo_deals_action"
+                parent="point_of_sale.menu_point_config_product"/>
+	
+</odoo>

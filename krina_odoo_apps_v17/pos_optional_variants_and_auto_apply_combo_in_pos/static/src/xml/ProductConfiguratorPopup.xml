@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ProductConfiguratorPopup" t-inherit="point_of_sale.ProductConfiguratorPopup" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('attribute_name')]" position="after">
+        	<t t-if="attribute.not_mandatory">
+	            <p class="attribute_name">Would you like to add this ?</p>
+		            <div class="configurator_radio" id="mandatory_choice">
+		                <div>
+		                    <input type="radio" t-att-name="attribute.name" id="yes" value="yes" class="mandatory"/>
+		                    <label for="yes">
+		                        <div class="radio_attribute_label m-2">Yes</div>
+		                    </label>
+		                </div>
+		                <div>
+							<input type="radio" t-att-name="attribute.name" id="no" value="no" class="mandatory"/>
+		                    <label for="no">
+		                        <div class="radio_attribute_label m-2">No</div>
+		                    </label>
+		                </div>
+		            </div> <br/>
+        	</t>
+        </xpath>
+    </t>
+</templates>

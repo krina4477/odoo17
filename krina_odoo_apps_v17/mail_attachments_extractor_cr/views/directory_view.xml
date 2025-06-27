@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- System Directory Tree view  -->
+	<record id="system_directory_tree_view" model="ir.ui.view">
+		<field name="name">system.directory.tree.view</field>
+		<field name="model">system.directory</field>			
+		<field name="arch" type="xml">
+			<tree string="System Directory">
+				<field name="name"/>
+				<field name="write_date"/>
+				<field name="file_location"/>
+				<field name="files_count"/>
+				<field name="subdirectories_count"/>
+			</tree>
+		</field>
+	</record>
+
+	<!-- System Directory Form View -->
+	<record id="system_directory_form_view" model="ir.ui.view">
+		<field name="name">system.directory.form.view</field>
+		<field name="model">system.directory</field>			
+		<field name="arch" type="xml">				
+			<form string="System Directory">
+				<sheet>
+					<div class="oe_button_box" name="button_box">
+						<button name="action_view_subdirectories" type="object" class="oe_stat_button" icon="fa-folder-open-o">
+			                <field string="Subdirectories" name="subdirectories_count" widget="statinfo"/>
+		 				</button>
+		 				<button name="action_view_files" type="object" class="oe_stat_button" icon="fa-file-text-o">
+			                <field string="Files" name="files_count" widget="statinfo"/>
+		 				</button>
+	                </div>
+					<div class="oe_title" style="display:flex">
+						<field name="image" widget="image" class="oe_avatar" nolabel="1" options="{'image_preview': 'image_128'}" style="float:left;" />
+						<h3 style="margin-left: 18px;">
+							<label for="name" class="oe_edit_only"/>
+							<field name="name" placeholder="Directory Name" style="margin-left: 0px;"/>
+						</h3>
+					</div>
+					<group>
+						<group>
+							<field name="is_root"/>
+							<field name="parent_directory_id" invisible="is_root == True"/>
+						</group>
+						<group>
+							<field name="directory_tag_ids" widget="many2many_tags"/>
+							<field name="files"/>
+						</group>
+						<group>
+							<field name="file_location"/>
+							<field name="subject_line" invisible="1"/>
+						</group>
+						<group>
+							<field name="subdirectories"/>
+						</group>
+					</group>
+					<notebook>
+						<page name="page_subdirectories" string="Subdirectories">
+							<field name="subdirectories_ids">
+								<tree string="Subdirectories">
+									<field name="name"/>
+									<field name="files_count"/>
+									<field name="subdirectories_count"/>
+								</tree>
+							</field>
+						</page>
+						<page name="page_files" string="Files">
+							<field name="file_ids">
+								<tree string="Files">
+									<field name="name"/>
+					                <field name="res_model"/>
+					                <field name="type"/>
+					                <field name="create_uid"/>
+					                <field name="create_date"/>
+								</tree>
+							</field>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+
+	<!-- System Directory Kanban -->
+	<record id="system_directory_kanban_view" model="ir.ui.view">
+		<field name="name">system.directory.kanban.view</field>
+		<field name="model">system.directory</field>
+		<field name="arch" type="xml">
+			<kanban>
+                <field name="id"/>
+                <field name="write_date"/>
+                <field name="directory_tag_ids"/>
+                <field name="files_count"/>
+                <field name="subdirectories_count"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                        	<div class="o_kanban_image_fill_left d-none d-md-block" t-attf-style="background-image:url('#{kanban_image('system.directory', 'image', record.id.raw_value, placeholder)}')">
+							</div>
+                            <div class="oe_kanban_details">
+                                <strong>
+                                    <field name="name"/>
+                                </strong>
+                                <ul>
+                                    <li><field name="write_date"/></li>
+                                </ul>
+                                <span class="oe_kanban_list_many2many">
+			                        <field name="directory_tag_ids" widget="many2many_tags"/>
+			                    </span>
+                                <ul>
+                                    <li>
+                                    	Files : <field name="files_count"/>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>
+                                    	Subdirectories : <field name="subdirectories_count"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+		</field>
+	</record>
+
+	<!-- System Directory Action -->
+	<record id="system_directory_action" model="ir.actions.act_window">
+        <field name="name">All Directories</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">system.directory</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <!-- System Root Directory Action -->
+	<record id="system_root_directory_action" model="ir.actions.act_window">
+        <field name="name">Root Directories</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="domain">[('is_root', '=', True)]</field>
+        <field name="res_model">system.directory</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <!-- Directory Menu Root -->
+	<menuitem 	id="directory_management_root"
+				name="Documents"/>
+
+
+	<!-- Directories -->
+	<menuitem 	id="system_directory"
+				name="Directories"
+				sequence="2"
+				parent="directory_management_root"/>
+
+	<!-- All Directories -->
+	<menuitem 	id="all_directories"
+				name="All Directories"
+				sequence="1"
+			 	action="system_directory_action"
+				parent="system_directory"/>
+
+	<!-- Root Directories -->
+	<menuitem 	id="root_directories"
+				name="Root Directories"
+				sequence="2"
+			 	action="system_root_directory_action"
+				parent="system_directory"/>
+
+	<!-- Configuration -->
+	<menuitem 	id="configuration"
+				name="Configuration"
+				sequence="3"
+				parent="directory_management_root"/>
+
+	<!-- File Tags -->
+	<menuitem 	id="file_tags"
+				name="File Tags"
+				sequence="1"
+			 	action="file_tags_action"
+				parent="configuration"/>
+
+	<!-- Directory Tags -->
+	<menuitem 	id="directory_tags"
+				name="Directory Tags"
+				sequence="2"
+			 	action="directory_tags_action"
+				parent="configuration"/>
+
+	<!-- Fetch Mail Config -->
+	<menuitem 	id="fetch_mail_config"
+				name="Fetch Mail"
+				sequence="3"
+			 	action="fetch_mail_config_action"
+				parent="configuration"/>
+
+
+</odoo>

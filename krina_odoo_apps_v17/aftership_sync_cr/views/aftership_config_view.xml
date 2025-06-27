@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_aftership_courier_list_tree" model="ir.ui.view">
+            <field name="name">aftership.courier.list.tree</field>
+            <field name="model">aftership.courier.list</field>
+            <field name="arch" type="xml">
+                <tree string="Courier List" create="0" delete="0">
+                    <field name="name"/>
+                    <field name="other_name"/>
+                    <field name="lang_id"/>
+                    <field name="country_id"/>
+                    <field name="phone"/>
+                    <field name="web_url"/>
+                    <field name="slug_name"/>
+                    <field name="active" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_aftership_courier_list_form" model="ir.ui.view">
+            <field name="name">aftership.courier.list.form</field>
+            <field name="model">aftership.courier.list</field>
+            <field name="arch" type="xml">
+                <form string="Courier List" create="0" delete="0">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button"
+                                    icon="fa-archive">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <group col="4">
+                            <field name="name"/>
+                            <field name="other_name"/>
+                            <field name="lang_id"/>
+                            <field name="country_id"/>
+                            <field name="phone"/>
+                            <field name="web_url"/>
+                            <field name="slug_name"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="view_aftership_courier_list_search" model="ir.ui.view">
+            <field name="name">aftership.courier.list.search</field>
+            <field name="model">aftership.courier.list</field>
+            <field name="arch" type="xml">
+                <search string="Courier List">
+                    <field name="name" filter_domain="['|',('name','ilike',self), ('other_name','ilike',self)]"
+                           string="Name"/>
+                    <field name="other_name"/>
+                    <field name="lang_id"/>
+                    <field name="country_id"/>
+                    <field name="phone"/>
+                    <field name="web_url"/>
+                    <field name="slug_name"/>
+                    <filter name="active" string="Active" domain="[('active','=',True)]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_lang_id" string="Language"
+                                context="{'group_by':'lang_id'}"/>
+                        <filter name="group_by_country_id" string="Country"
+                                context="{'group_by':'country_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="action_aftership_courier_list" model="ir.actions.act_window">
+            <field name="name">AfterShip Courier List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">aftership.courier.list</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'active_test': False}</field>
+            <field name="search_view_id" ref="view_aftership_courier_list_search"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem id="after_shipping_menu" name="AfterShip Configuration"
+                  parent="base.menu_administration" sequence="100"/>
+
+        <menuitem action="action_aftership_courier_list" name="AfterShip Courier List"
+                  id="menu_p2p_config" parent="after_shipping_menu"
+                  sequence="10"/>
+
+
+        <record id="view_aftership_tracking_tree" model="ir.ui.view">
+            <field name="name">aftership.tracking.tree</field>
+            <field name="model">aftership.tracking</field>
+            <field name="arch" type="xml">
+                <tree string="Tracking" create="0" delete="0">
+                    <field name="name"/>
+                    <field name="courier_id"/>
+                    <field name="tracking_no"/>
+                    <field name="sale_id"/>
+                    <field name="picking_id"/>
+                    <field name="partner_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_aftership_tracking_form" model="ir.ui.view">
+            <field name="name">aftership.tracking.form</field>
+            <field name="model">aftership.tracking</field>
+            <field name="arch" type="xml">
+                <form string="Tracking" create="0" delete="0">
+                    <header>
+                        <field name="state" widget="statusbar" clickable="True"/>
+                    </header>
+                    <sheet>
+                        <group col="4">
+                            <field name="name"/>
+                            <field name="courier_id"/>
+                            <field name="tracking_no"/>
+                            <field name="sale_id"/>
+                            <field name="picking_id"/>
+                            <field name="partner_id"/>
+                            <field name="state_pending"/>
+                            <field name="state_intransit"/>
+                            <field name="state_outfordelivery"/>
+                            <field name="state_delivered"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="view_aftership_tracking_search" model="ir.ui.view">
+            <field name="name">aftership.tracking.search</field>
+            <field name="model">aftership.tracking</field>
+            <field name="arch" type="xml">
+                <search string="Courier List">
+                    <field name="name"/>
+                    <field name="courier_id"/>
+                    <field name="tracking_no"/>
+                    <field name="sale_id"/>
+                    <field name="picking_id"/>
+                    <field name="partner_id"/>
+                    <field name="state"/>
+                    <filter name="draft" string="Draft" domain="[('state','=','draft')]"/>
+                    <filter name="pending" string="Pending" domain="[('state','=','pending')]"/>
+                    <filter name="delivered" string="Delivered" domain="[('state','=','delivered')]"/>
+                    <filter name="cancel" string="Cancel" domain="[('state','=','cancel')]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_courier_id" string="Courier"
+                                context="{'group_by':'courier_id'}"/>
+                        <filter name="group_by_sale_id" string="Sale Order"
+                                context="{'group_by':'sale_id'}"/>
+                        <filter name="group_by_picking_id" string="Delivery Order"
+                                context="{'group_by':'picking_id'}"/>
+                        <filter name="group_by_partner_id" string="Partner"
+                                context="{'group_by':'partner_id'}"/>
+                        <filter name="group_by_state" string="State"
+                                context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="action_aftership_tracking" model="ir.actions.act_window">
+            <field name="name">AfterShip Tracking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">aftership.tracking</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="search_view_id" ref="view_aftership_tracking_search"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem action="action_aftership_tracking" name="AfterShip Tracking"
+                  id="menu_aftership_tracking" parent="after_shipping_menu"
+                  sequence="11"/>
+
+
+    </data>
+</odoo>

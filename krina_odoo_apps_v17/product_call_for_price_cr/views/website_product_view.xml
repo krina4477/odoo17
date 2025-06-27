@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Qty Hide -->
+    <template id="product_quantity_hide" inherit_id="website_sale.product_quantity">
+        <xpath expr="//div[contains(@t-attf-class, 'css_quantity input-group')]" position="replace">
+            <t t-set="val" t-value="product.sudo().is_call_price"/>
+            <t t-if="val">
+            </t>
+            <t t-else="">
+                <div class="css_quantity input-group d-inline-flex mr-2 my-1 align-middle" contenteditable="false">
+                    <div class="input-group-prepend">
+                        <a t-attf-href="#" class="btn btn-primary js_add_cart_json" aria-label="Remove one" title="Remove one">
+                            <i class="fa fa-minus"></i>
+                        </a>
+                    </div>
+                    <input type="text" class="form-control quantity" data-min="1" name="add_qty" t-att-value="add_qty or 1"/>
+                    <div class="input-group-append">
+                        <a t-attf-href="#" class="btn btn-primary float_left js_add_cart_json" aria-label="Add one" title="Add one">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Add to Cart Button Hide -->
+    <template id="add_to_cart_button_hide" inherit_id="website_sale.product">
+        <a id='add_to_cart' position="replace">
+            <t t-set="val" t-value="product.sudo().is_call_price"/>
+            <t t-if="val">
+            </t>
+            <t t-else="">
+                <a role="button" id="add_to_cart" class="btn btn-primary btn-lg js_check_product a-submit my-1 mr-1 px-5 font-weight-bold flex-grow-1" href="#"><i class="fa fa-shopping-cart mr-2"/>ADD TO CART</a>
+            </t>
+        </a>
+    </template>
+
+    <!-- Add to Cart Button Hide on kanban view -->
+    <template id="products_add_to_cart_button_hide" inherit_id="website_sale.products_add_to_cart">
+        <xpath expr="//t[@t-if='product_variant_id']" position="replace">
+            <t t-set="val" t-value="product.sudo().is_call_price"/>
+            <t t-if="val">
+            </t>
+            <t t-else="">
+                <t t-if="product_variant_id">
+                    <a href="#" role="button" class="btn btn-primary a-submit" aria-label="Shopping cart" title="Shopping cart">
+                        <span class="fa fa-shopping-cart"/>
+                    </a>
+                </t>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Price Hide on kanban view -->
+    <template id="products_item_cart_button_hide" inherit_id="website_sale.products_item">
+        <xpath expr="//div[hasclass('product_price')]" position="replace">
+            <t t-set="val" t-value="product.sudo().is_call_price"/>
+            <t t-if="val">
+            </t>
+            <t t-else="">
+                <div class="product_price mb-1" itemprop="offers" itemscope="itemscope" itemtype="http://schema.org/Offer">
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Price Hide -->
+    <template id="product_price_hide" inherit_id="website_sale.product_price">
+        <span class="oe_price" position="replace">
+            <t t-set="val" t-value="product.sudo().is_call_price"/>
+            <t t-if="val">
+            </t>
+            <t t-else="">
+                <span class="oe_price" style="white-space: nowrap;" t-esc="combination_info['price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+            </t>
+        </span>
+    </template>
+
+    <!-- Call For Price Button -->
+    <template id="call_for_price_popup" inherit_id="website_sale.product">
+        <xpath expr="//div[hasclass('js_product','js_main_product')]" position="inside">
+            <t t-set="val" t-value="product.sudo().is_call_price"/>
+            <t t-if="val">
+                <button type="button" class="btn btn-primary btn-lg mt16" data-bs-toggle="modal" data-bs-target="#callforprice" data-bs-whatever="@mdo"> <i class="fa fa-dollar"/> Call For Price </button>
+                <div class="modal fade" id="callforprice" tabindex="-1" role="dialog" aria-labelledby="callforpriceLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="callforprice" style="margin-top: 9px;">Call For Price</h5>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="margin-top: -7px;margin-right: -6px;color: black;"> x
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="call_price_from">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="first-name">First Name:</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="first_name"
+                                                   class="form-control"
+                                                   required="1" id="first-name"/>
+                                        </div>
+                                        <div class="col-md-3 mt16">
+                                            <label for="last-name">Last Name:</label>
+                                        </div>
+                                        <div class="col-md-9 mt16">
+                                            <input type="text" name="last_name"
+                                                   class="form-control"
+                                                   id="last-name"/>
+                                        </div>
+                                        <div class="col-md-3 mt16">
+                                            <label for="email">Email:</label>
+                                        </div>
+                                        <div class="col-md-9 mt16">
+                                            <input type="text" name="email_name"
+                                                   class="form-control"
+                                                   required="1" id="email"/>
+                                        </div>
+                                        <div class="col-md-3 mt16" style="display: none;">
+                                            <label for="product_id">Product:</label>
+                                        </div>
+                                        <div class="col-md-9 mt16" style="display: none;">
+                                            <input type="text" name="product"
+                                                   class="form-control"
+                                                   required="1" id="product_id"
+                                                   t-att-value="product.id"/>
+                                        </div>
+                                        <div class="col-md-3 mt16">
+                                            <label for="contact">Contact No:</label>
+                                        </div>
+                                        <div class="col-md-9 mt16">
+                                            <input type="text" name="contact_no"
+                                                   class="form-control"
+                                                   required="1" id="contact"/>
+                                        </div>
+                                        <div class="col-md-3 mt16">
+                                            <label for="quantity">Quantity:</label>
+                                        </div>
+                                        <div class="col-md-9 mt16">
+                                            <input type="text" name="no_of_quantity"
+                                                   class="form-control"
+                                                   required="1" id="quantity"/>
+                                        </div>
+                                        <div class="col-md-3 mt16">
+                                            <label for="message">Message:</label>
+                                        </div>
+                                        <div class="col-md-9 mt16">
+                                            <textarea type="text" name="message"
+                                                   class="form-control"
+                                                   required="1" id="message">
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button href="#" class="btn btn-primary js_apply_submit_button">Submit</button>
+                                <input class="btn btn-primary js_apply_reset_button" type="reset" value="Reset" style="background-color: #df0931;border: #df0931;"/>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+            <t t-else="">
+            </t>
+        </xpath>
+    </template>
+</odoo>

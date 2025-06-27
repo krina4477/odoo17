@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record model="res.groups" id="group_custome_pricelist">
+    	<field name="name">Custom Pricelist Access Rights</field>
+    </record>
+</odoo>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="request_demo_thanks" model="website.page">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/thankyou</field>
+        <field name="website_indexed" eval="False"/>
+        <field name="website_published">True</field>
+        <field name="key">request_demo_website_cr.request_demo_thanks</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="request_demo_website_cr.request_demo_thanks">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="container">
+                            <section id="demo_request" style="padding-top:30px;padding-bottom:30px;">
+                                <p class="alert alert-success" role="status" style="width:50%">
+                                We have recieved your request and we will get back soon
+                                    <br></br>
+                                Thanks
+                                </p>
+                                <a role="button" href="/shop">
+                                    <span class="fa fa-arrow-left" />
+                                    <span class="">Continue Shopping</span>
+                                </a>
+                            </section>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+    <record id="request_demo_try_again" model="website.page">
+        <field name="name">Try Again</field>
+        <field name="type">qweb</field>
+        <field name="url">/tryagain</field>
+        <field name="website_indexed" eval="False"/>
+        <field name="website_published">True</field>
+        <field name="key">request_demo_website_cr.request_demo_try_again</field>
+        <field name="arch" type="xml">
+            <t name="Try Again" t-name="request_demo_website_cr.request_demo_try_again">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="container">
+                            <section id="demo_request_fail" style="padding-top:30px;padding-bottom:30px;">
+                                <p class="alert alert-danger" role="status" style="width:50%">
+                                Something went wrong.
+                                    <br></br>
+                                Please try again.
+                                </p>
+                                <a role="button" href="/shop">
+                                    <span class="fa fa-arrow-left" />
+                                    <span>Continue Shopping</span>
+                                </a>
+                            </section>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+</odoo>

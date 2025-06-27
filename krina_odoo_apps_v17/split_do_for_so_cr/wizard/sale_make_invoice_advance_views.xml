@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_sale_order_confirm_split_do" model="ir.ui.view">
+            <field name="name">Split Delivery Order</field>
+            <field name="model">sale.split.do</field>
+            <field name="arch" type="xml">
+                <form string="Split Delivery Order">
+                    <field name="sale_id" readonly="True" invisible="1"/>
+                        <field name="sale_line_ids" class="oe_inline" nolabel="1"/>
+                    <footer>
+                        <button name="split_delivery_order" id="split_delivery_order" string="Split Delivery Order" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_sale_order_confirm_split_do" model="ir.actions.act_window">
+            <field name="name">Split Delivery Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.split.do</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <!-- TODO: check if we need this -->
+            <field name="binding_model_id" ref="sale.model_sale_order" />
+            <field name="binding_view_types">list</field>
+        </record>
+
+</odoo>

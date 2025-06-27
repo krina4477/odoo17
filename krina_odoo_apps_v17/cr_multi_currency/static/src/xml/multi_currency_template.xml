@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--To show popup when clicking on feedback control button-->
+<templates id="template" xml:space="preserve">
+    <t t-name="cr_multi_currency.MultiCurrencyPopup" owl="1">
+        <main class="modal-body">
+            <div class="popup second-validation-popup">
+                <div class="title multi-currency-title" style="background: #3e67c1; color: white; padding: 13px 20px;">
+                    <p style="margin: 0px;">Multi Currency</p>
+                </div>
+                <div class="body validation-body" style="font-family: 'Open Sans', sans-serif;">
+            <div style="display: flex; padding: 15px 45px; text-align: center; align-items: center;">
+                <div style="float: left; font-weight: 600;">
+                    <span>Select Currency : </span>
+                </div>
+                <div style="float: right;">
+                    <div class="custom-select" style="width:170px;">
+                        <select class="wk-selected-currency" style="width: 150px;height: 30px;font-size: 15px;font-family: sans-serif;border-radius: 5px;
+                                                background: white;color: #424242;" t-on-change="selected_currency">
+                            <t t-foreach="this.env.services.pos.currencies" t-as="currency" t-key="currency.id">
+                                <t t-if="this.env.services.pos.get_order() and this.env.services.pos.get_order().use_multi_currency">
+                                    <option t-att-value="currency.id">
+                                        <t t-esc="currency.name"/>
+                                        (
+                                        <t t-esc="currency.symbol"/>
+                                        )
+                                    </option>
+                                </t>
+                                <t t-else="">
+                                    <option t-att-value="currency.id">
+                                        <t t-esc="currency.name"/>
+                                    </option>
+                                </t>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+            </div>
+                    <div style="display: flex; padding: 15px 45px; text-align: center;">
+                <div style="float: left; font-weight: 600;">
+                    <span>Current Rate : </span>
+                </div>
+                        <div style="float: right; margin-left: 15px;">
+                    <span class="wk-exchange-rate"> 00.0</span>
+                </div>
+            </div>
+                    <div style="display: flex; padding: 15px 45px; text-align: center;">
+                <div style="float: left; font-weight: 600;">
+                    <span>
+                                    1
+                        <t t-esc="this.env.services.pos.config.currency_id[1]"/>
+                        =
+                    </span>
+                </div>
+                        <div style="float: right; margin-left: 15px;">
+                    <span class="wk-currency-amount"> 1 </span>
+                            &#032;
+                            <span class="wk-currency-name"> USD</span>
+                </div>
+            </div>
+            </div>
+                <footer class="footer cash-move modal-footer" style="justify-content:end;">
+                <button class="button confirm btn btn-lg btn-primary" t-on-click="confirm">
+                                Add
+                </button>
+                    <button class="button cancel btn btn-lg btn-secondary" t-on-click="cancel">
+                                Cancel
+                </button>
+            </footer>
+            </div>
+        </main>
+    </t>
+</templates>

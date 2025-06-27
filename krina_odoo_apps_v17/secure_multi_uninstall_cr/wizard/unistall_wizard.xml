@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_module_uninstall_duplicate" model="ir.ui.view">
+            <field name="name">Uninstall module</field>
+            <field name="model">module.uninstall.duplicate</field>
+            <field name="arch" type="xml">
+                <form string="Please login to Uninstall module">
+                    <group>
+                        <group>
+                            <field name="email"/>
+                            <field name="password" password="True"/>
+                            <field name="module_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="Confirm" class="btn-primary" type="object" name="action_uninstall"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

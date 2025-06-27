@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_leave_allocation_wizard" model="ir.ui.view">
+        <field name="name">hr.leave.allocation.wizard.form</field>
+        <field name="model">hr.leave.allocation.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Allocate Leave">
+                <group>
+                    <field name="related_employee_id"/>
+                    <field name="holiday_status_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="no_of_days"/>
+                </group>
+                <footer>
+                    <button name="action_confirm_leave" string="Confirm" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

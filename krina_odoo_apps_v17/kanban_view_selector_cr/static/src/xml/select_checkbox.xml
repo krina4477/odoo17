@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates>
+    <t t-name="kanban_view_selector_cr.KanbanRenderer" t-inherit="web.KanbanRenderer" t-inherit-mode="extension" owl="1">
+       <xpath expr="//t[@t-else='']//KanbanRecord" position="after">
+           <input class="o_kanban_selector" t-att-id="groupOrRecord.record.id" type="checkbox"  value="groupOrRecord.record.selected"  t-on-change="toggleSelection"/>
+        </xpath>
+    </t>
+    <t t-name="kanban_view_selector_cr.KanbanView" t-inherit="web.KanbanView" t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-set-slot='control-panel-additional-actions']" position="after" >
+            <t t-set-slot="control-panel-selection-actions" >
+                <t t-if="props.info.actionMenus and model.root.selection.length" >
+                    <ActionMenus
+                            getActiveIds="() => model.root.selection.map((r) => r.resId)"
+                            context="props.context"
+                            domain="props.domain"
+                            items="actionMenuItems"
+                            isDomainSelected="model.root.isDomainSelected"
+                            resModel="model.root.resModel"
+                            onActionExecuted="() => model.load()"
+                    />
+                 </t>
+            </t>
+        </xpath>
+    </t>
+
+
+    <t t-name="kanban_view_selector_cr.KanbanView.Buttons" t-inherit="web.KanbanView.Buttons" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div" position="inside">
+            <button class="btn btn-primary o_kanban_all_selector"  t-on-click="SelectRecord">
+                Select All Record
+            </button>
+            <button class="btn btn-primary o_kanban_all_unselector d-none"
+                    t-on-click="UnSelectRecord">UnSelect All
+                Record
+            </button>
+        </xpath>
+    </t>
+</templates>

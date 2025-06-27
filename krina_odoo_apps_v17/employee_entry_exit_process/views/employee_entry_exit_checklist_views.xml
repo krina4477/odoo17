@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="employee_entry_checklist_form_view" model="ir.ui.view">
+        <field name="name">employee.entry.checklist.form</field>
+        <field name="model">employee.entry.checklist</field>
+        <field name="arch" type="xml">
+            <form string="Employee Entry Checklist">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="employee_exit_checklist_form_view" model="ir.ui.view">
+        <field name="name">employee.exit.checklist.form</field>
+        <field name="model">employee.exit.checklist</field>
+        <field name="arch" type="xml">
+            <form string="Employee Exit Checklist">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_employee_entry_menu" model="ir.actions.act_window">
+        <field name="name">Employee Entry</field>
+        <field name="res_model">employee.entry.checklist</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_employee_exit_menu" model="ir.actions.act_window">
+        <field name="name">Employee Exit</field>
+        <field name="res_model">employee.exit.checklist</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_employee_entry_checklist"
+              name="Employee Entry"
+              parent="hr.menu_config_employee"
+              action="action_employee_entry_menu"
+              sequence="20"/>
+
+    <menuitem id="menu_employee_exit_checklist"
+              name="Employee Exit"
+              parent="hr.menu_config_employee"
+              action="action_employee_exit_menu"
+              sequence="21"/>
+
+</odoo>

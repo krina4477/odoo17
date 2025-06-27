@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_inherit_split_do" model="ir.ui.view">
+        <field name="name">sale.order.form.split.do.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header//button[@id='action_confirm']" position="replace">
+                <field name="delivery_order_complete" invisible="1"/>
+                <button name="%(action_sale_order_confirm_split_do)d" id="new_action_confirm" string="Confirm" class="btn-primary" type="action" invisible="delivery_order_complete == True or state not in ['sent','draft','sale']"/>
+            </xpath>
+            <xpath expr="//header//button[@name='action_confirm']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+             <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+                    <field name="delivery_order_done" invisible="1"/>
+             </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_lightspeed_shop,lightspeed.shop.user,model_lightspeed_shop,,1,1,1,1
+access_lightspeed_mixin,lightspeed.mixin.user,model_lightspeed_mixin,,1,1,1,1
+access_product_brand,product.brand.user,model_product_brand,,1,1,1,1
+access_product_tag,product.tag.user,model_product_tag,,1,1,1,1
+access_lightspeed_failure_log,lightspeed.failure.log.user,model_lightspeed_failure_log,,1,1,1,1
+access_lightspeed_shop_shop,lightspeed.shop.shop.user,model_lightspeed_shop_shop,,1,1,1,1

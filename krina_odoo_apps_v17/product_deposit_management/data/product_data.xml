@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Product (Deposit Product) -->
+        <record id="deposit_product_1" model="product.template">
+            <field name="name">Bottle Heineken</field>
+<!--            <field name="categ_id" ref="product.product_category_2"/>-->
+            <field name="standard_price">0</field>
+            <field name="list_price">1</field>
+            <field name="deposit_type">deposit_product</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        </record>
+
+        <record id="deposit_product_2" model="product.template">
+            <field name="name">Crates Deposit</field>
+<!--            <field name="categ_id" ref="product.product_category_2"/>-->
+            <field name="standard_price">0</field>
+            <field name="list_price">2</field>
+            <field name="deposit_type">deposit_product</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        </record>
+
+    </data>
+</odoo>
