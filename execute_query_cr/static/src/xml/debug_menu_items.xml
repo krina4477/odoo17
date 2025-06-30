@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+
+    <t t-name="execute_query_cr.DebugMenu.ExecuteQuery">
+        <Dialog title.translate="Execute Query">
+
+            <div t-ref="rootRef">
+
+                <div class="d-none d-flex justify-content-center loading">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only"/>
+                    </div>
+                </div>
+
+                <div class="dialog">
+                    <div class="o_cp_pager text-nowrap " role="search" t-if="state.totalPage > 0">
+                        <nav class="o_pager d-flex gap-2 h-100" aria-label="Pager">
+                            <span class="btn-group d-print-none" aria-atomic="true">
+
+                                <input id="offset_input" type="number" t-on-keydown="setOffset" min="1" value="1"/>
+                                <button t-if="state.offset > 0" t-on-click="offsetPrevious" class="btn btn-secondary o_pager_previous px-2 rounded-start" aria-label="Previous">
+                                    <i class="oi oi-chevron-left"></i>
+                                </button>
+                                <button t-if="state.totalPage - 1 > state.offset" t-on-click="offsetNext" class="btn btn-secondary o_pager_next px-2 rounded-end" aria-label="Next">
+                                    <i class="oi oi-chevron-right"></i>
+                                </button>
+                            </span>
+                        </nav>
+                    </div>
+
+                    <form method="post" t-att-action="'/execute_query'">
+                        <div class="container py-5">
+                            <textarea t-model="state.code.value" class="sql-editor" placeholder="Write your SQL query here..."></textarea>
+                        </div>
+
+                        <t t-set-slot="footer">
+                            <button type="submit" class="btn btn-secondary" t-on-click="executeQuery">EXECUTE</button>
+                            <button class="btn btn-secondary" t-on-click="props.close">CLOSE</button>
+                        </t>
+
+                    </form>
+
+                    <div t-if="errorInfo.info">
+                        <h1>Error</h1>
+                        <p t-out="errorInfo.info"></p>
+                    </div>
+
+                    <div>
+                        <h6 t-out="successInfo.info"></h6>
+                        <div id="table-container" class="container mt-4"></div>
+                    </div>
+                </div>
+            </div>
+        </Dialog>
+
+    </t>
+</templates>
