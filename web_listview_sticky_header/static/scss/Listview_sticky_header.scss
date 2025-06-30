@@ -1,0 +1,13 @@
+.o_form_sheet_bg .nav nav-tabs flex-row flex-nowrap {
+    position: fixed !important;
+    width: 100%;
+    z-index: 11;
+}
+
+thead tr:nth-child(1) th{
+    position: sticky !important;
+}
+
+.o_list_renderer.o_renderer {
+    overflow-x: unset;
+}

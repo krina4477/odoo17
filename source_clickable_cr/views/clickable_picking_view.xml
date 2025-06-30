@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="inherit_stock_picking_form" model="ir.ui.view">
+        <field name="name">inherit.stock.picking.form.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id"
+               ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="replace">
+                <field name="origin" widget="reference" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="inherit_stock_picking_tree">
+        <field name="name">inherit.stock.picking.tree</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id"
+               ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="replace">
+                <field name="origin" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!--    ==========================so to po=================================   -->
+
+    <record id="inherit_purchase_order_form" model="ir.ui.view">
+        <field name="name">inherit.purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id"
+               ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="replace">
+                <field name="origin" widget="reference" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="inherit_purchase_order_kpis_tree">
+        <field name="name">inherit.purchase.order.tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id"
+               ref="purchase.purchase_order_kpis_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="replace">
+                <field name="origin" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <!--    ============================SO To MO==================================-->
+    <record id="inherited_mrp_production_form_view" model="ir.ui.view">
+        <field name="name">inherited.mrp.production.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id"
+               ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='miscellaneous']//field[@name='origin']" position="replace">
+                <field name="origin" widget="reference" readonly="1" string="Source Document"/>
+            </xpath>
+        </field>
+    </record>
+
+      <record model="ir.ui.view" id="inherit_mrp_production_tree_view">
+        <field name="name">inherit.mrp.production.tree</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id"
+               ref="mrp.mrp_production_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="replace">
+                <field name="origin" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
